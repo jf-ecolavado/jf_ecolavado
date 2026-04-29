@@ -834,7 +834,7 @@ ul {
     grid-template-rows: 0fr;
     opacity: 0;
     margin-top: 0;
-    transition: grid-template-rows 0.4s ease 0.8s, opacity 0.4s ease 0.8s, margin 0.4s ease 0.8s;
+    transition: grid-template-rows 0.4s ease 1.2s, opacity 0.4s ease 1.2s, margin 0.4s ease 1.2s;
 }
 
 .service-card:hover .service-card-details {
@@ -881,7 +881,7 @@ ul {
     gap: 12px;
     opacity: 0;
     transform: translateY(10px);
-    transition: all 0.4s ease 0.8s;
+    transition: all 0.4s ease 1.2s;
 }
 
 .service-card:hover .service-card-footer {
@@ -1083,7 +1083,18 @@ ul {
 
 /* HOVER INTERACTIONS */
 .service-card:hover {
-    transform: translateY(-5px) scale(1.01);
+    transform: scale(1.01); /* Quitado el translateY para evitar saltos */
+}
+
+/* Zona de seguridad para que el hover no se pierda al bajar el ratón */
+.service-card::after {
+    content: '';
+    position: absolute;
+    bottom: -40px;
+    left: 0;
+    right: 0;
+    height: 40px;
+    z-index: -1;
 }
 
 .service-card:hover .service-card-content {
