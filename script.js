@@ -652,7 +652,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const servicioSelect = document.getElementById('servicio');
     const paqueteCocheGroup = document.getElementById('grupo-paquete-coche');
     const medidasColchonGroup = document.getElementById('grupo-medidas-colchon');
-    const medidaColchonSelect = document.getElementById('medida_colchon');
+    const medidaColchonSelect = document.querySelector('input[name="medida_colchon"]:checked');
     const fotosGroup = document.getElementById('grupo-fotos');
     
     if (servicioSelect) {
@@ -670,14 +670,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             
             // Lógica para colchones
-            if (medidasColchonGroup && medidaColchonSelect) {
+            if (medidasColchonGroup) {
+                const radios = document.querySelectorAll('input[name="medida_colchon"]');
                 if (this.value === 'colchones') {
                     medidasColchonGroup.style.display = 'block';
-                    medidaColchonSelect.required = true;
+                    radios.forEach(r => r.required = true);
                 } else {
                     medidasColchonGroup.style.display = 'none';
-                    medidaColchonSelect.required = false;
-                    medidaColchonSelect.value = '';
+                    radios.forEach(r => { r.required = false; r.checked = false; });
                 }
             }
 
