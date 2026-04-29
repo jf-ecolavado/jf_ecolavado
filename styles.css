@@ -2285,6 +2285,18 @@ ul {
     height: auto;
     filter: drop-shadow(0 0 30px rgba(138, 195, 78, 0.3));
     mix-blend-mode: screen;
+    animation: floatSubtleMap 6s ease-in-out infinite; /* Animación de flotación */
+}
+
+@keyframes floatSubtleMap {
+    0%, 100% { 
+        transform: translateY(0) scale(1); 
+        filter: drop-shadow(0 0 20px rgba(138, 195, 78, 0.2));
+    }
+    50% { 
+        transform: translateY(-15px) scale(1.03); 
+        filter: drop-shadow(0 0 45px rgba(138, 195, 78, 0.5));
+    }
 }
 
 @media (max-width: 992px) {
