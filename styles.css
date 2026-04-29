@@ -1168,35 +1168,16 @@ ul {
     pointer-events: auto !important;
 }
 
-/* Evitar que las estrellas bloqueen el clic y asegurar su posición */
-.btn-star {
-    position: absolute !important;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100% !important;
-    height: 100% !important;
-    pointer-events: none !important;
-    z-index: 1;
-    overflow: visible;
-}
-
 .btn-sm {
     position: relative;
     z-index: 100 !important;
     cursor: pointer !important;
     pointer-events: auto !important;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden; /* Mantiene las estrellas dentro */
 }
 
-/* Asegurar que el texto esté por encima de las estrellas */
-.btn-sm span, 
-.btn-sm {
-    color: #fff;
-    font-weight: 700;
+/* Evitar que las estrellas bloqueen el clic */
+.btn-star {
+    pointer-events: none !important;
 }
 
 /* --- CÓMO TRABAJAMOS --- */
