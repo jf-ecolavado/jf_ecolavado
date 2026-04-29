@@ -2213,10 +2213,11 @@ ul {
     grid-template-columns: 1fr 400px;
     gap: 60px;
     align-items: center;
-    background: rgba(13, 13, 13, 0.4);
+    background: rgba(5, 5, 5, 0.85); /* Más oscuro y sólido */
     padding: 60px;
     border-radius: var(--radius-lg);
     border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
 }
 
 .subtle-title {
