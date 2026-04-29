@@ -588,14 +588,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // Lógica para Fotos (Sofás y Alfombras)
-            if (fotosGroup) {
-                if (this.value === 'sofas' || this.value === 'alfombras') {
-                    fotosGroup.style.display = 'block';
-                } else {
-                    fotosGroup.style.display = 'none';
-                }
-            }
+            // Lógica para Fotos (Sofás y Alfombras) - Managed in updateCart for consistency
         });
     }
 
@@ -895,9 +888,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>`;
         }
 
-        // 2. Main Service
+        // 2. Main Service & Dynamic Fields
         const fotosGroup = document.getElementById('grupo-fotos');
-        if (fotosGroup) fotosGroup.style.display = 'none';
+        if (fotosGroup) {
+            if (servicio === 'sofas' || servicio === 'alfombras') {
+                fotosGroup.style.display = 'block';
+            } else {
+                fotosGroup.style.display = 'none';
+            }
+        }
 
         if (servicio === 'vehiculos') {
             if (tamanoCocheGroup) tamanoCocheGroup.style.display = 'block';
