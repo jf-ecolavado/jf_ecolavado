@@ -472,19 +472,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 8. FORM SUBMISSION ---
+    // --- 8. FORM SUBMISSION (WHATSAPP) ---
     const form = document.getElementById('presupuesto-form');
     if (form) {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-            // Basic validation check
+            
             const privacyChecked = document.querySelector('input[name="privacidad"]').checked;
             if (!privacyChecked) {
                 alert('Debes aceptar la Política de Privacidad.');
                 return;
             }
 
-            // Photo validation for Sofas and Alfombras
             const servicio = document.getElementById('servicio').value;
             const fotosInput = document.getElementById('fotos');
             if ((servicio === 'sofas' || servicio === 'alfombras') && (!fotosInput.files || fotosInput.files.length === 0)) {
@@ -492,19 +491,87 @@ document.addEventListener('DOMContentLoaded', () => {
                 fotosInput.focus();
                 return;
             }
-            
-            // Simulate form submission
-            const btn = form.querySelector('button[type="submit"]');
-            const originalText = btn.textContent;
-            btn.textContent = 'Enviando...';
-            btn.disabled = true;
 
-            setTimeout(() => {
-                alert('¡Solicitud enviada correctamente! Nos pondremos en contacto contigo pronto.');
-                form.reset();
-                btn.textContent = originalText;
-                btn.disabled = false;
-            }, 1500);
+            const formData = new FormData(form);
+            const nombre = formData.get('nombre');
+            const telefono = formData.get('telefono');
+            const zona = formData.get('zona');
+            const paquete = formData.get('paquete_coche');
+            const tamano = formData.get('tamano_coche');
+            const colchon = formData.get('medida_colchon');
+            const suciedad = formData.get('suciedad');
+            const fecha = formData.get('fecha');
+            const hora = formData.get('hora');
+            const mensaje = formData.get('mensaje');
+            const total = document.getElementById('cart-total').textContent;
+
+            // Build WhatsApp Message
+            let waMsg = `*SOLICITUD DE PRESUPUESTO - JF ECOLAVADO*%0A%0A`;
+            waMsg += `*Cliente:* ${nombre}%0A`;
+            waMsg += `*Teléfono:* ${telefono}%0A`;
+            waMsg += `*Ubicación:* ${zona}%0A%0A`;
+            
+            waMsg += `*SERVICIO SELECCIONADO:*%0A`;
+            if (servicio === 'vehiculos') {
+                waMsg += `• Lavado de Vehículo (${tamano})%0A`;
+                waMsg += `• Paquete: ${paquete.charAt(0).toUpperCase() + paquete.slice(1)}%0A`;
+            } else if (servicio === 'colchones') {
+                waMsg += `• Limpieza de Colchón (${colchon}cm)%0A`;
+            } else if (servicio === 'sofas') {
+                waMsg += `• Limpieza de Sofás / Butacas%0A`;
+            } else if (servicio === 'alfombras') {
+                waMsg += `• Limpieza de Alfombras%0A`;
+            }
+
+            // Extras
+            let extras = [];
+            if (formData.get('extra_pelos')) extras.push('Eliminación de pelos');
+            if (formData.get('extra_faros')) extras.push('Pulido de faros');
+            if (formData.get('extra_plasticos')) extras.push('Recuperar plásticos');
+            if (formData.get('manchas')) extras.push('Tratamiento de manchas');
+            if (formData.get('mascotas')) extras.push('Pelos de mascota');
+            
+            if (extras.length > 0) {
+                waMsg += `%0A*EXTRAS:*%0A• ${extras.join('%0A• ')}%0A`;
+            }
+
+            waMsg += `%0A*DETALLES:*%0A`;
+            waMsg += `• Suciedad: ${suciedad}%0A`;
+            if (fecha) waMsg += `• Fecha: ${fecha}%0A`;
+            if (hora) waMsg += `• Hora: ${hora}%0A`;
+            if (mensaje) waMsg += `%0A*Nota:* ${mensaje}%0A`;
+
+            waMsg += `%0A*PRECIO ESTIMADO:* ${total}%0A%0A`;
+            
+            if (servicio === 'sofas' || servicio === 'alfombras') {
+                waMsg += `_A continuación adjunto las fotos para la valoración final..._`;
+            } else {
+                waMsg += `_Adjunto fotos opcionales para mejor valoración..._`;
+            }
+
+            const waURL = `https://wa.me/34614423060?text=${waMsg}`;
+            window.open(waURL, '_blank');
+        });
+    }
+
+    // --- 8.1 PHOTO PREVIEW LOGIC ---
+    const fotosInput = document.getElementById('fotos');
+    const fotosPreview = document.getElementById('fotos-preview');
+    if (fotosInput && fotosPreview) {
+        fotosInput.addEventListener('change', function() {
+            fotosPreview.innerHTML = '';
+            if (this.files) {
+                Array.from(this.files).forEach(file => {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.className = 'preview-thumb';
+                        fotosPreview.appendChild(img);
+                    }
+                    reader.readAsDataURL(file);
+                });
+            }
         });
     }
 
