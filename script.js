@@ -560,6 +560,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const paqueteCocheGroup = document.getElementById('grupo-paquete-coche');
     const medidasColchonGroup = document.getElementById('grupo-medidas-colchon');
     const medidaColchonSelect = document.getElementById('medida_colchon');
+    const fotosGroup = document.getElementById('grupo-fotos');
     
     if (servicioSelect) {
         servicioSelect.addEventListener('change', function() {
@@ -584,6 +585,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     medidasColchonGroup.style.display = 'none';
                     medidaColchonSelect.required = false;
                     medidaColchonSelect.value = '';
+                }
+            }
+
+            // Lógica para Fotos (Sofás y Alfombras)
+            if (fotosGroup) {
+                if (this.value === 'sofas' || this.value === 'alfombras') {
+                    fotosGroup.style.display = 'block';
+                } else {
+                    fotosGroup.style.display = 'none';
                 }
             }
         });
@@ -886,6 +896,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // 2. Main Service
+        const fotosGroup = document.getElementById('grupo-fotos');
+        if (fotosGroup) fotosGroup.style.display = 'none';
+
         if (servicio === 'vehiculos') {
             if (tamanoCocheGroup) tamanoCocheGroup.style.display = 'block';
             const paquete = formData.get('paquete_coche');
