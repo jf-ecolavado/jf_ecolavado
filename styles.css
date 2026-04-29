@@ -834,6 +834,7 @@ ul {
     grid-template-rows: 0fr;
     opacity: 0;
     margin-top: 0;
+    pointer-events: none; /* No interfiere hasta que se abre */
     transition: grid-template-rows 0.4s ease 1.2s, opacity 0.4s ease 1.2s, margin 0.4s ease 1.2s;
 }
 
@@ -841,6 +842,7 @@ ul {
     grid-template-rows: 1fr;
     opacity: 1;
     margin-top: 15px;
+    pointer-events: auto;
     transition: grid-template-rows 0.2s ease, opacity 0.2s ease, margin 0.2s ease;
 }
 
@@ -996,8 +998,9 @@ ul {
     position: relative;
     z-index: 2;
     border-radius: var(--card-radius);
-    overflow: hidden;
+    /* overflow: hidden; -- ELIMINADO para que funcione el ::after de seguridad */
     display: flex;
+    flex-direction: column;
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     background: transparent;
     border: none;
@@ -1051,7 +1054,7 @@ ul {
     -webkit-backdrop-filter: blur(15px);
     display: flex;
     flex-direction: inherit; /* Mantiene el layout wide/normal */
-    overflow: hidden;
+    /* overflow: hidden; -- ELIMINADO para permitir zona de seguridad */
     z-index: 1;
 }
 
@@ -1142,9 +1145,20 @@ ul {
     100% { --hue: 360; }
 }
 
-    color: var(--color-text-muted);
-    margin-bottom: 25px;
-    flex-grow: 1;
+/* Botones de servicio (Precios / Presupuesto) */
+.btn-sm {
+    padding: 12px 25px !important; /* Más grandes */
+    font-size: 0.9rem !important;
+    min-width: 140px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.btn-sm:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2);
 }
 
 /* --- CÓMO TRABAJAMOS --- */
@@ -2638,6 +2652,8 @@ ul {
         display: flex !important;
         visibility: visible !important;
     }
+    /* Botones específicos de servicios en móvil ya escalados arriba */
+
 
     /* Asegurar que los botones sean clickeables */
     .btn, button, a, .mobile-menu-toggle {
