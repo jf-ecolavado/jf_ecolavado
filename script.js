@@ -503,7 +503,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             try {
                 // 1. SEND TO FORMSPREE (EMAIL)
-                const response = await fetch('https://formspree.io/jfecolavado@gmail.com', {
+                const response = await fetch('https://formspree.io/f/maqvwjdz', {
                     method: 'POST',
                     body: formData,
                     headers: {
