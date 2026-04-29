@@ -981,8 +981,8 @@ ul {
     --hue: 120; /* Brand green */
     --hue-speed: 1;
     --rotate: 0;
-    --animation-speed: 6s;
-    --interaction-speed: 0.55s;
+    --animation-speed: 4s;
+    --interaction-speed: 0.3s;
     --glow-scale: 1.5;
     --scale-factor: 1;
     --glow-blur: 6;
@@ -2510,7 +2510,7 @@ ul {
 .reveal {
     opacity: 0;
     transform: translateY(30px);
-    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+    transition: all 0.4s cubic-bezier(0.5, 0, 0, 1);
 }
 
 .reveal.active {
