@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JF Ecolavado | Limpieza profesional a domicilio Tenerife</title>
+    <meta name="description" content="Limpieza profesional a domicilio en Tenerife. Vehículos, sofás, colchones, tapicerías y alfombras con unidad móvil equipada. Resultados premium y ecológicos.">
+    <meta name="keywords" content="Limpieza de sofás en Tenerife, Limpieza de coches a domicilio Tenerife, Limpieza de tapicerías Tenerife, Limpieza de colchones Tenerife, Limpieza de alfombras Tenerife, Limpieza profesional a domicilio Tenerife">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- tsParticles -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-all@3.1.0/tsparticles.all.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- CANVAS ANIMADO DE FONDO (PRINCIPAL - ESCRITORIO) -->
+    <canvas id="scroll-sequence-canvas"></canvas>
+    <!-- CANVAS ANIMADO DE FONDO (PRINCIPAL MÓVIL) -->
+    <canvas id="scroll-sequence-canvas-mobile"></canvas>
+
+    <!-- PANTALLA DE CARGA -->
+    <div id="loader" class="loader-wrapper">
+        <div class="loader-content">
+            <img src="Diseño sin título.png" alt="JF Ecolavado Logo" class="loader-logo-img">
+            <div class="loader-bar-container">
+                <div class="loader-bar"></div>
+            </div>
+            <p class="loader-text">Preparando tu limpieza...</p>
+        </div>
+    </div>
+
+    <!-- NAVEGACIÓN STICKY -->
+    <header class="navbar">
+        <div class="logo">
+            <a href="#hero"><img src="Diseño sin título.png" alt="JF Ecolavado Logo" class="navbar-logo"></a>
+        </div>
+        <button class="mobile-menu-toggle" aria-label="Abrir menú">
+            <i class="ph ph-list"></i>
+        </button>
+        <nav class="nav-links">
+            <ul>
+                <li><a href="#hero">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="precios.html">Precios</a></li>
+                <li><a href="resultados.html">Resultados</a></li>
+                <li><a href="#como-trabajamos">Cómo trabajamos</a></li>
+                <li><a href="#zonas">Zonas</a></li>
+                <li><a href="#presupuesto">Presupuesto</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO PRINCIPAL -->
+    <section id="hero" class="hero-section">
+        <!-- Parallax Background Element -->
+        <div class="hero-bg" id="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        
+        <div class="hero-content">
+            <img src="Diseño sin título.png" alt="JF Ecolavado" style="max-height: 280px; width: auto; margin-bottom: 30px; filter: drop-shadow(0 0 25px rgba(138, 195, 78, 0.4));">
+            <h1 style="display: none;">JF Ecolavado</h1>
+            <h2 class="hero-subtitle">Limpieza profesional a domicilio en Tenerife</h2>
+            
+            <div class="hero-ctas">
+                <a href="#presupuesto" class="btn btn-outline">Pedir presupuesto</a>
+                <a href="tel:614423060" class="btn btn-solid"><span class="btn-text-content">Llamar ahora</span></a>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- 1. SERVICIOS -->
+    <section id="servicios" class="section servicios-section">
+        <div class="container">
+            <div class="sparkles-header">
+                <div id="tsparticles-servicios" class="sparkles-canvas"></div>
+                <h2 class="section-title reveal">Nuestros Servicios</h2>
+            </div>
+            <div class="services-grid">
+                
+                <!-- Vehículos -->
+                <div class="service-card reveal">
+                    <div class="service-visual">
+                        <video src="cohe/coche listo.mp4" autoplay loop muted playsinline></video>
+                    </div>
+                    <div class="service-card-body">
+                        <div class="service-card-header">
+                            <i class="ph ph-car"></i>
+                            <h3 class="service-card-title">Vehículos</h3>
+                        </div>
+                        <div class="service-card-details">
+                            <div class="details-content">
+                                <p>Limpieza integral detallada de interiores y exteriores con acabados de alta gama.</p>
+                            </div>
+                        </div>
+                        <div class="service-card-footer">
+                            <a href="#presupuesto" class="btn btn-sm" data-service="vehiculos">Presupuesto</a>
+                            <a href="precios.html" class="btn btn-outline btn-sm">Precios</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sofás -->
+                <div class="service-card reveal" style="transition-delay: 0.1s;">
+                    <div class="service-visual">
+                        <video src="sofa/sofa listo.mp4" autoplay loop muted playsinline></video>
+                    </div>
+                    <div class="service-card-body">
+                        <div class="service-card-header">
+                            <i class="ph ph-couch"></i>
+                            <h3 class="service-card-title">Sofás</h3>
+                        </div>
+                        <div class="service-card-details">
+                            <div class="details-content">
+                                <p>Eliminación profunda de manchas, olores y ácaros en todo tipo de tejidos y piel.</p>
+                            </div>
+                        </div>
+                        <div class="service-card-footer">
+                            <a href="#presupuesto" class="btn btn-sm" data-service="sofas">Presupuesto</a>
+                            <a href="precios.html#sofas" class="btn btn-outline btn-sm">Precios</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Alfombras -->
+                <div class="service-card reveal" style="transition-delay: 0.2s;">
+                    <div class="service-visual">
+                        <video src="alfombra/servicio alfombra.mp4" autoplay loop muted playsinline></video>
+                    </div>
+                    <div class="service-card-body">
+                        <div class="service-card-header">
+                            <i class="ph ph-squares-four"></i>
+                            <h3 class="service-card-title">Alfombras</h3>
+                        </div>
+                        <div class="service-card-details">
+                            <div class="details-content">
+                                <p>Tratamiento especializado para alfombras delicadas y de gran tamaño a domicilio.</p>
+                            </div>
+                        </div>
+                        <div class="service-card-footer">
+                            <a href="#presupuesto" class="btn btn-sm" data-service="alfombras">Presupuesto</a>
+                            <a href="precios.html#sofas" class="btn btn-outline btn-sm">Precios</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Colchones -->
+                <div class="service-card reveal" style="transition-delay: 0.3s;">
+                    <div class="service-visual">
+                        <video src="colchon/cochn.mp4" autoplay loop muted playsinline></video>
+                    </div>
+                    <div class="service-card-body">
+                        <div class="service-card-header">
+                            <i class="ph ph-bed"></i>
+                            <h3 class="service-card-title">Colchones</h3>
+                        </div>
+                        <div class="service-card-details">
+                            <div class="details-content">
+                                <p>Limpieza técnica e higienización para un descanso libre de bacterias y alérgenos.</p>
+                            </div>
+                        </div>
+                        <div class="service-card-footer">
+                            <a href="#presupuesto" class="btn btn-sm" data-service="colchones">Presupuesto</a>
+                            <a href="precios.html#colchones" class="btn btn-outline btn-sm">Precios</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            </div>
+            <div class="reveal" style="text-align: center; margin-top: 60px;">
+                <a href="resultados.html" class="btn btn-solid btn-large btn-pulse" style="max-width: 500px; margin: 0 auto; display: inline-flex;"><span class="btn-text-content">Ver galería completa de trabajos</span></a>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- 2. CÓMO TRABAJAMOS -->
+    <section id="como-trabajamos" class="section work-section bg-darker">
+        <div class="container">
+            <div class="sparkles-header">
+                <div id="tsparticles-work" class="sparkles-canvas"></div>
+                <h2 class="section-title reveal">Cómo Trabajamos</h2>
+            </div>
+            <div class="steps-grid">
+                
+                <div class="step-card reveal">
+                    <div class="step-number">1</div>
+                    <h3>Solicitas presupuesto</h3>
+                    <p>Rellena nuestro formulario o contáctanos por WhatsApp indicando el servicio necesario.</p>
+                </div>
+
+                <div class="step-card reveal" style="transition-delay: 0.1s;">
+                    <div class="step-number">2</div>
+                    <h3>Revisamos servicio, zona y estado</h3>
+                    <p>Evaluamos tu petición para darte un precio cerrado y sin sorpresas.</p>
+                </div>
+
+                <div class="step-card reveal" style="transition-delay: 0.2s;">
+                    <div class="step-number">3</div>
+                    <h3>Confirmamos cita</h3>
+                    <p>Acordamos el día y la hora que mejor se adapte a tu disponibilidad.</p>
+                </div>
+
+                <div class="step-card reveal" style="transition-delay: 0.3s;">
+                    <div class="step-number">4</div>
+                    <h3>Vamos a tu domicilio</h3>
+                    <p>Llegamos con nuestra unidad móvil equipada y realizamos la limpieza in situ.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. ZONAS -->
+    <section id="zonas" class="section zones-section bg-darker">
+        <div class="container">
+            <h2 class="section-title reveal">Zonas de Desplazamiento</h2>
+            <p style="text-align: center; margin-top: -40px; margin-bottom: 50px; color: var(--color-text-muted);" class="reveal">Mapa informativo de suplementos desde Santa Cruz</p>
+            
+            <div class="zones-coverage-banner reveal">
+                <!-- Parte Superior: Mapa y Título -->
+                <div class="banner-header">
+                    <div class="banner-map-mini">
+                        <img src="TFN/tenerife_map_final.png" alt="Tenerife">
+                    </div>
+                    <div class="banner-title-group">
+                        <h3 class="banner-main-title">Cobertura y Suplementos</h3>
+                        <p class="banner-subtitle">Precios basados en distancia real verificada desde Santa Cruz</p>
+                    </div>
+                </div>
+
+                <!-- Parte Inferior: Rejilla de Zonas (Compacta) -->
+                <div class="banner-zones-grid">
+                    <div class="b-zone b-z0">
+                        <div class="b-z-head"><span class="b-z-dot"></span> Zona 0 <span class="b-z-price">GRATIS</span></div>
+                        <div class="b-z-info">Santa Cruz, La Laguna, Tegueste, El Rosario, Candelaria</div>
+                    </div>
+                    <div class="b-zone b-z1">
+                        <div class="b-z-head"><span class="b-z-dot"></span> Zona 1 <span class="b-z-price">+5€</span></div>
+                        <div class="b-z-info">Tacoronte, Arafo, El Sauzal, Güímar, La Matanza</div>
+                    </div>
+                    <div class="b-zone b-z2">
+                        <div class="b-z-head"><span class="b-z-dot"></span> Zona 2 <span class="b-z-price">+10€</span></div>
+                        <div class="b-z-info">La Victoria, Fasnia, Sta. Úrsula, Pto. Cruz, Orotava, Realejos</div>
+                    </div>
+                    <div class="b-zone b-z3">
+                        <div class="b-z-head"><span class="b-z-dot"></span> Zona 3 <span class="b-z-price">+15€</span></div>
+                        <div class="b-z-info">Arico, San Juan Rambla, Icod, La Guancha</div>
+                    </div>
+                    <div class="b-zone b-z4">
+                        <div class="b-z-head"><span class="b-z-dot"></span> Zona 4 <span class="b-z-price">+20€</span></div>
+                        <div class="b-z-info">Garachico, Granadilla, El Tanque, Los Silos, San Miguel</div>
+                    </div>
+                    <div class="b-zone b-z5">
+                        <div class="b-z-head"><span class="b-z-dot"></span> Zona 5 <span class="b-z-price">+25€</span></div>
+                        <div class="b-z-info">Arona, Buenavista, Adeje</div>
+                    </div>
+                    <div class="b-zone b-z6">
+                        <div class="b-z-head"><span class="b-z-dot"></span> Zona 6 <span class="b-z-price">+30€</span></div>
+                        <div class="b-z-info">Vilaflor, Guía de Isora, Santiago del Teide</div>
+                    </div>
+                </div>
+
+                <div class="banner-footer">
+                    <i class="ph ph-info"></i> El suplemento se calcula automáticamente al seleccionar tu municipio en el formulario inferior.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. FORMULARIO DE PRESUPUESTO -->
+    <section id="presupuesto" class="section form-section bg-darker">
+        <div class="container">
+            <h2 class="section-title reveal">Solicitar Presupuesto</h2>
+            <div class="form-container reveal">
+                <div class="form-layout-wrapper">
+                    <div class="form-main">
+                        <form id="presupuesto-form" action="#" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Teléfono</label>
+                        <input type="tel" id="telefono" name="telefono" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="zona">Municipio de Tenerife</label>
+                        <select id="zona" name="zona" required>
+                            <option value="">Selecciona tu municipio...</option>
+                            <option value="Adeje" data-zone="5">Adeje</option>
+                            <option value="Arafo" data-zone="0">Arafo</option>
+                            <option value="Arona" data-zone="5">Arona</option>
+                            <option value="Buenavista del Norte" data-zone="4">Buenavista del Norte</option>
+                            <option value="Candelaria" data-zone="0">Candelaria</option>
+                            <option value="El Rosario" data-zone="0">El Rosario</option>
+                            <option value="El Sauzal" data-zone="2">El Sauzal</option>
+                            <option value="El Tanque" data-zone="4">El Tanque</option>
+                            <option value="Fasnia" data-zone="3">Fasnia</option>
+                            <option value="Garachico" data-zone="4">Garachico</option>
+                            <option value="Granadilla de Abona" data-zone="4">Granadilla de Abona</option>
+                            <option value="Guía de Isora" data-zone="6">Guía de Isora</option>
+                            <option value="Güímar" data-zone="0">Güímar</option>
+                            <option value="Icod de los Vinos" data-zone="3">Icod de los Vinos</option>
+                            <option value="La Guancha" data-zone="4">La Guancha</option>
+                            <option value="La Matanza de Acentejo" data-zone="1">La Matanza de Acentejo</option>
+                            <option value="La Orotava" data-zone="2">La Orotava</option>
+                            <option value="La Victoria de Acentejo" data-zone="1">La Victoria de Acentejo</option>
+                            <option value="Los Realejos" data-zone="2">Los Realejos</option>
+                            <option value="Los Silos" data-zone="4">Los Silos</option>
+                            <option value="Puerto de la Cruz" data-zone="2">Puerto de la Cruz</option>
+                            <option value="San Cristóbal de La Laguna" data-zone="0">San Cristóbal de La Laguna</option>
+                            <option value="San Juan de la Rambla" data-zone="3">San Juan de la Rambla</option>
+                            <option value="San Miguel de Abona" data-zone="5">San Miguel de Abona</option>
+                            <option value="Santa Cruz de Tenerife" data-zone="0">Santa Cruz de Tenerife</option>
+                            <option value="Santa Úrsula" data-zone="1">Santa Úrsula</option>
+                            <option value="Santiago del Teide" data-zone="6">Santiago del Teide</option>
+                            <option value="Tacoronte" data-zone="1">Tacoronte</option>
+                            <option value="Tegueste" data-zone="0">Tegueste</option>
+                            <option value="Vilaflor de Chasna" data-zone="5">Vilaflor de Chasna</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="servicio">Tipo de servicio</label>
+                        <select id="servicio" name="servicio" required>
+                            <option value="">Selecciona un servicio...</option>
+                            <option value="vehiculos">Limpieza de vehículos</option>
+                            <option value="sofas">Sofás</option>
+                            <option value="colchones">Colchones</option>
+                            <option value="alfombras">Alfombras</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="grupo-tamano-coche" style="display: none;">
+                        <label for="tamano_coche">Tamaño del vehículo</label>
+                        <select id="tamano_coche" name="tamano_coche">
+                            <option value="pequeno">Pequeño (Coche compacto)</option>
+                            <option value="mediano" selected>Mediano (Berlina / SUV)</option>
+                            <option value="grande">Grande (Furgoneta / 4x4 / 7 plazas)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group full-width" id="grupo-paquete-coche" style="display: none;">
+                        <label>Selecciona tu paquete de lavado para el vehículo:</label>
+                        <div class="pricing-grid">
+                            <label class="pricing-card">
+                                <input type="radio" name="paquete_coche" id="pkg_estandar" value="estandar">
+                                <div class="pricing-content">
+                                    <h4>Lavado Estándar</h4>
+                                    <p class="price" style="color:var(--color-green); font-weight:bold; margin-bottom: 10px;">Desde 40€</p>
+                                    <ul class="pricing-features">
+                                        <li><i class="ph ph-check"></i> Lavado exterior en seco</li>
+                                        <li><i class="ph ph-check"></i> Limpieza de llantas y cristales</li>
+                                        <li><i class="ph ph-check"></i> Aspirado de moquetas y alfombrillas</li>
+                                        <li><i class="ph ph-check"></i> Limpieza de salpicadero</li>
+                                    </ul>
+                                </div>
+                            </label>
+                            
+                            <label class="pricing-card premium">
+                                <input type="radio" name="paquete_coche" id="pkg_premium" value="premium">
+                                <div class="pricing-content">
+                                    <div class="badge">El más completo</div>
+                                    <h4>Lavado Completo</h4>
+                                    <p class="price" style="color:var(--color-green); font-weight:bold; margin-bottom: 10px;">Desde 115€</p>
+                                    <ul class="pricing-features">
+                                        <li><i class="ph ph-check"></i> <b>Todo lo del Estándar</b></li>
+                                        <li><i class="ph ph-check"></i> Limpieza profunda de tapicería</li>
+                                        <li><i class="ph ph-check"></i> Eliminación de manchas</li>
+                                        <li><i class="ph ph-check"></i> Limpieza detallada del interior</li>
+                                    </ul>
+                                </div>
+                            </label>
+
+                            <label class="pricing-card">
+                                <input type="radio" name="paquete_coche" id="pkg_tapiceria" value="tapiceria">
+                                <div class="pricing-content">
+                                    <h4>Solo Tapicería</h4>
+                                    <p class="price" style="color:var(--color-green); font-weight:bold; margin-bottom: 10px;">Desde 60€</p>
+                                    <ul class="pricing-features">
+                                        <li><i class="ph ph-check"></i> Eliminamos manchas</li>
+                                        <li><i class="ph ph-check"></i> Limpieza profunda</li>
+                                        <li><i class="ph ph-check"></i> Eliminación de olores</li>
+                                    </ul>
+                                </div>
+                            </label>
+                        </div>
+                        <div style="background-color: rgba(138, 195, 78, 0.1); border-left: 4px solid var(--color-green); padding: 15px; margin-top: 20px; border-radius: 4px;">
+                            <p style="color: #ccc; margin: 0; font-size: 0.85rem; line-height: 1.4;">
+                                <strong>Nota importante:</strong> El precio final puede variar según el nivel de suciedad del vehículo y la ubicación.
+                            </p>
+                        </div>
+
+                        <div class="extras-form-section" style="margin-top: 30px;">
+                            <label style="margin-bottom: 15px; display: block; font-weight: 600; color: #fff;">¿Deseas añadir algún servicio extra?</label>
+                            <div class="extras-checkbox-grid">
+                                <label class="extra-checkbox-item">
+                                    <input type="checkbox" name="extra_pelos" value="si">
+                                    <div class="extra-checkbox-content">
+                                        <i class="ph ph-dog"></i>
+                                        <span>Eliminación de pelos</span>
+                                    </div>
+                                </label>
+                                <label class="extra-checkbox-item">
+                                    <input type="checkbox" name="extra_faros" value="si">
+                                    <div class="extra-checkbox-content">
+                                        <i class="ph ph-headlights"></i>
+                                        <span>Pulido de faros</span>
+                                    </div>
+                                </label>
+                                <label class="extra-checkbox-item">
+                                    <input type="checkbox" name="extra_plasticos" value="si">
+                                    <div class="extra-checkbox-content">
+                                        <i class="ph ph-sparkle"></i>
+                                        <span>Recuperar plásticos</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group full-width" id="grupo-medidas-colchon" style="display: none; margin-top: 15px;">
+                        <label for="medida_colchon">Medida del colchón</label>
+                        <select id="medida_colchon" name="medida_colchon">
+                            <option value="">Selecciona la medida...</option>
+                            <option value="90">90 x 190 cm</option>
+                            <option value="135">135 x 190 cm</option>
+                            <option value="150">150 x 190 cm</option>
+                            <option value="180">180 x 190 cm</option>
+                            <option value="200">200 x 200 cm</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="suciedad">Nivel de suciedad</label>
+                        <select id="suciedad" name="suciedad" required>
+                            <option value="">Selecciona nivel...</option>
+                            <option value="bajo">Bajo (Mantenimiento)</option>
+                            <option value="medio">Medio</option>
+                            <option value="alto">Alto (Muy sucio)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-row checkbox-row">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="manchas"> ¿Tiene manchas?
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="mascotas"> ¿Hay pelos de mascota?
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fecha">Fecha preferida</label>
+                        <input type="date" id="fecha" name="fecha">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="hora">Hora preferida</label>
+                        <select id="hora" name="hora">
+                            <option value="">Cualquier hora (9:00 - 16:00)</option>
+                            <option value="09:00">09:00</option>
+                            <option value="10:00">10:00</option>
+                            <option value="11:00">11:00</option>
+                            <option value="12:00">12:00</option>
+                            <option value="13:00">13:00</option>
+                            <option value="14:00">14:00</option>
+                            <option value="15:00">15:00</option>
+                            <option value="16:00">16:00</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="mensaje">Mensaje o detalles adicionales</label>
+                        <textarea id="mensaje" name="mensaje" rows="4"></textarea>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="fotos" class="file-upload-label">
+                            <i class="ph ph-upload-simple"></i> Subir fotos (Opcional para mejor valoración)
+                        </label>
+                        <input type="file" id="fotos" name="fotos" multiple accept="image/*" class="file-input">
+                    </div>
+
+                    <div class="form-group full-width privacy-group">
+                        <label class="checkbox-label privacy-label">
+                            <input type="checkbox" name="privacidad" required>
+                            <span>He leído y acepto la <a href="#privacidad">Política de Privacidad</a> (Obligatorio)</span>
+                        </label>
+                    </div>
+
+                    <div class="form-group full-width submit-group">
+                        <button type="submit" class="btn btn-solid btn-large"><span class="btn-text-content">Solicitar presupuesto</span></button>
+                    </div>
+                    </form>
+                    </div> <!-- .form-main -->
+                    
+                    <div class="form-sidebar">
+                        <div class="cart-card">
+                            <div class="cart-header">
+                                <i class="ph ph-shopping-cart"></i>
+                                <h3>Tu Presupuesto</h3>
+                            </div>
+                            <div class="cart-body" id="cart-items">
+                                <p class="empty-cart">Completa el formulario para ver el resumen.</p>
+                            </div>
+                            <div class="cart-footer">
+                                <div class="cart-total-row">
+                                    <span>Total Estimado</span>
+                                    <span class="total-amount" id="cart-total">0€</span>
+                                </div>
+                                <p class="cart-disclaimer">* El precio puede variar según el estado real de suciedad y confirmación final.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- .form-layout-wrapper -->
+            </div> <!-- .form-container -->
+        </div>
+    </section>
+
+    <!-- 5. FAQ -->
+    <section id="faq" class="section faq-section">
+        <div class="container">
+            <h2 class="section-title reveal">Preguntas Frecuentes</h2>
+            <div class="faq-container reveal">
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        ¿Trabajan en todo Tenerife?
+                        <i class="ph ph-caret-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sí, nos desplazamos por toda la isla de Tenerife con nuestra unidad móvil para realizar los servicios a domicilio.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        ¿Necesito tener garaje?
+                        <i class="ph ph-caret-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>No es necesario tener garaje. Nosotros trabajamos completamente a domicilio con una unidad móvil equipada con todo lo necesario para realizar la limpieza.<br><br>Utilizamos productos ecológicos de lavado en seco, por lo que podemos trabajar perfectamente en la vía pública sin necesidad de agua ni conexión eléctrica.<br><br>Lo único que pedimos es disponer de una zona cercana donde podamos aparcar ambos vehículos con seguridad y sin mucho tráfico.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        ¿Llevan ustedes la maquinaria?
+                        <i class="ph ph-caret-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sí, nuestra unidad móvil está completamente equipada con maquinaria profesional de inyección-extracción, vapor, aspiración e iluminación.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        ¿Cuánto tarda el servicio?
+                        <i class="ph ph-caret-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>El tiempo de realización es de 1 hasta 5 horas, en función del tipo de servicio que sea y el estado de la superficie.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        ¿Las manchas salen siempre?
+                        <i class="ph ph-caret-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Eliminamos la gran mayoría de las manchas. Sin embargo, algunas manchas antiguas o tratadas previamente con productos inadecuados pueden haber teñido la fibra de forma permanente.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        ¿Cómo puedo pedir presupuesto?
+                        <i class="ph ph-caret-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Puedes rellenar el formulario de esta web, llamarnos o escribirnos por WhatsApp al 614 423 060 enviándonos fotos para una valoración más rápida.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contacto" class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Info de Empresa -->
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="Diseño sin título.png" alt="JF Ecolavado Logo" class="footer-logo-img">
+                    </div>
+                    <p class="footer-description">Limpieza profesional a domicilio en Tenerife. Especialistas en devolver el aspecto original a tu vehículo, sofá o colchón con tecnología ecológica.</p>
+                </div>
+
+                <!-- Enlaces Útiles -->
+                <div>
+                    <h3 class="footer-title">Enlaces Útiles</h3>
+                    <ul class="footer-links">
+                        <li><a href="resultados.html"><i class="ph ph-image"></i> Nuestros Trabajos</a></li>
+                        <li><a href="precios.html"><i class="ph ph-tag"></i> Tarifas y Paquetes</a></li>
+                        <li><a href="#servicios"><i class="ph ph-sparkle"></i> Servicios</a></li>
+                        <li><a href="#como-trabajamos"><i class="ph ph-info"></i> Cómo Trabajamos</a></li>
+                    </ul>
+                </div>
+
+                <!-- Redes Sociales -->
+                <div>
+                    <h3 class="footer-title">Síguenos</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://instagram.com/JF_ECOLAVADO" target="_blank"><i class="ph ph-instagram-logo"></i> Instagram</a></li>
+                        <li><a href="https://www.facebook.com/profile.php?id=61583520435495" target="_blank"><i class="ph ph-facebook-logo"></i> Facebook</a></li>
+                        <li><a href="https://wa.me/34614423060" target="_blank"><i class="ph ph-whatsapp-logo"></i> WhatsApp</a></li>
+                        <li><a href="tel:614423060"><i class="ph ph-phone"></i> Llamar Directo</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="footer-newsletter">
+                    <h3 class="footer-title">Nuestras Ofertas</h3>
+                    <p class="footer-description" style="margin-bottom: 20px;">Suscríbete para recibir promociones exclusivas y consejos de mantenimiento.</p>
+                    <div class="newsletter-form-container">
+                        <form id="newsletter-form" class="newsletter-form">
+                            <input type="email" id="newsletter-email" class="newsletter-input" placeholder="Tu email..." required>
+                            <button type="submit" class="newsletter-btn" id="newsletter-submit">Unirse</button>
+                        </form>
+                        <div id="newsletter-status" class="newsletter-status">
+                            <span class="status-msg"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 JF Ecolavado. Todos los derechos reservados.</p>
+                <div style="display: flex; gap: 20px;">
+                    <a href="aviso-legal.html" style="color: var(--color-text-muted); font-size: 0.8rem;">Aviso Legal</a>
+                    <a href="politica-privacidad.html" style="color: var(--color-text-muted); font-size: 0.8rem;">Privacidad</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BANNER DE COOKIES -->
+    <div id="cookie-banner" class="cookie-banner">
+        <div class="cookie-content">
+            <p>Utilizamos cookies propias y de terceros para fines analíticos y para mostrarte publicidad personalizada en base a un perfil elaborado a partir de tus hábitos de navegación. Puedes aceptar todas las cookies, rechazarlas o configurar tus preferencias.</p>
+            <div class="cookie-buttons">
+                <button id="accept-cookies" class="btn btn-solid btn-sm"><span class="btn-text-content">Aceptar</span></button>
+                <button id="reject-cookies" class="btn btn-outline btn-sm">Rechazar</button>
+                <button id="config-cookies" class="btn btn-text btn-sm">Configurar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- WHATSAPP CHAT WIDGET -->
+    <div id="wa-widget" class="wa-widget">
+        <!-- Burbuja de mensaje -->
+        <div class="wa-chat-bubble" id="wa-chat-bubble">
+            <div class="wa-bubble-header">
+                <div class="wa-avatar">
+                    <img src="perfil de wa/86911bf8-0742-4bfa-8ea7-a59e3c99ea7e.jpg" alt="Jorge JF Ecolavado">
+                </div>
+                <div class="wa-header-info">
+                    <span class="wa-name">Jorge · JF Ecolavado</span>
+                    <span class="wa-status"><span class="wa-dot"></span> En línea</span>
+                </div>
+                <button class="wa-close-bubble" id="wa-close-bubble" aria-label="Cerrar">
+                    <i class="ph ph-x"></i>
+                </button>
+            </div>
+            <div class="wa-bubble-body">
+                <div class="wa-message">
+                    <p>¡Hola! 👋 Soy Jorge.</p>
+                    <p>¿En qué te puedo ayudar hoy?</p>
+                    <span class="wa-time">Ahora mismo</span>
+                </div>
+            </div>
+            <a href="https://wa.me/34614423060?text=Hola%20Jorge,%20me%20gustar%C3%ADa%20pedir%20m%C3%A1s%20informaci%C3%B3n%20sobre%20vuestros%20servicios." 
+               target="_blank" class="wa-reply-btn">
+                <i class="ph ph-arrow-bend-up-right"></i> Escríbenos
+            </a>
+        </div>
+        <!-- Botón flotante de WhatsApp -->
+        <button class="wa-fab" id="wa-fab" aria-label="Abrir WhatsApp">
+            <div class="wa-pulse-ring"></div>
+            <div class="wa-fab-face"></div>
+            <i class="ph ph-whatsapp-logo"></i>
+        </button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Precios y Servicios | JF Ecolavado</title>
+    <meta name="description" content="Consulta nuestros precios de limpieza profesional a domicilio en Tenerife. Vehículos, colchones, sofás y alfombras con resultados premium.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- tsParticles -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-all@3.1.0/tsparticles.all.bundle.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        /* Estilos específicos para esta página */
+        body {
+            background-color: var(--color-bg);
+            background-image: radial-gradient(circle at 50% 0%, #152219 0%, var(--color-bg) 70%);
+            min-height: 100vh;
+        }
+        
+        .page-header {
+            padding: 150px 0 50px;
+            text-align: center;
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--color-text-muted);
+            text-decoration: none;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            transition: var(--transition-fast);
+        }
+        
+        .back-link:hover {
+            color: var(--color-green);
+        }
+
+        .services-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+
+        .services-nav .btn {
+            min-width: 150px;
+        }
+        
+        .section-subtitle {
+            font-size: 2rem;
+            color: #fff;
+            margin: 60px 0 30px;
+            text-align: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .section-subtitle i {
+            color: var(--color-green);
+        }
+
+        .section-subtitle::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            width: 50px;
+            height: 3px;
+            background: var(--color-green);
+            border-radius: 2px;
+        }
+        
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding-bottom: 40px;
+        }
+        
+        .package-card {
+            background-color: rgba(5, 5, 5, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .package-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(138, 195, 78, 0.3);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+        
+        .package-card.premium {
+            border-color: rgba(138, 195, 78, 0.5);
+            background-color: rgba(10, 20, 10, 0.8);
+            transform: scale(1.02);
+        }
+        
+        .package-card.premium:hover {
+            transform: scale(1.02) translateY(-5px);
+        }
+        
+        .package-badge {
+            position: absolute;
+            top: -15px;
+            right: 30px;
+            background: linear-gradient(90deg, var(--color-green), var(--color-blue));
+            color: #000;
+            padding: 6px 15px;
+            border-radius: var(--radius-pill);
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(138, 195, 78, 0.4);
+        }
+        
+        .package-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        
+        .package-price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .package-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 30px 0;
+            flex-grow: 1;
+        }
+        
+        .package-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+            color: #ddd;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+        
+        .package-features li i {
+            color: var(--color-green);
+            font-size: 1.1rem;
+            margin-top: 2px;
+        }
+        
+        .package-btn {
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Colchones Grid (Different style) */
+        .mattress-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .mattress-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius-md);
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .mattress-card:hover {
+            border-color: var(--color-green);
+            background: rgba(138, 195, 78, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .mattress-size {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .mattress-price {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--color-green);
+        }
+
+        /* Extras Grid */
+        .extras-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        .extra-card {
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            transition: var(--transition-normal);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .extra-card:hover {
+            border-color: var(--color-green);
+            background-color: rgba(138, 195, 78, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .extra-icon {
+            font-size: 2rem;
+            color: var(--color-green);
+            margin-bottom: 15px;
+        }
+
+        .extra-title {
+            font-size: 1.1rem;
+            color: #fff;
+            margin-bottom: 5px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .extra-price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--color-green);
+            margin-bottom: 15px;
+        }
+
+        .extra-desc {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            line-height: 1.6;
+        }
+        
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: #0d0d0d;
+            border: 1px solid rgba(138, 195, 78, 0.3);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero-section { padding: 120px 0 60px; }
+            .packages-grid, .mattress-grid, .extras-grid {
+                grid-template-columns: 1fr !important;
+                gap: 30px;
+            }
+            .modal-content {
+                padding: 30px 20px;
+                width: 95%;
+                max-height: 90vh;
+                overflow-y: auto;
+            }
+            .modal-buttons {
+                flex-direction: column;
+            }
+            .btn, button, a {
+                pointer-events: auto !important;
+                position: relative;
+                z-index: 100;
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: 0.3s;
+        }
+
+        .modal-close:hover {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .page-header { padding: 120px 20px 40px; }
+            .section-title { font-size: 2.2rem; }
+            .section-subtitle { font-size: 1.6rem; }
+            .packages-grid, .extras-grid, .mattress-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVEGACIÓN STICKY -->
+    <header class="navbar">
+        <div class="logo">
+            <a href="index.html#hero"><img src="Diseño sin título.png" alt="JF Ecolavado Logo" class="navbar-logo"></a>
+        </div>
+        <button class="mobile-menu-toggle" aria-label="Abrir menú">
+            <i class="ph ph-list"></i>
+        </button>
+        <nav class="nav-links">
+            <ul>
+                <li><a href="index.html#hero">Inicio</a></li>
+                <li><a href="index.html#servicios">Servicios</a></li>
+                <li><a href="precios.html">Precios</a></li>
+                <li><a href="resultados.html">Resultados</a></li>
+                <li><a href="index.html#como-trabajamos">Cómo trabajamos</a></li>
+                <li><a href="index.html#zonas">Zonas</a></li>
+                <li><a href="index.html#presupuesto">Presupuesto</a></li>
+                <li><a href="index.html#faq">FAQ</a></li>
+                <li><a href="index.html#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="page-header">
+            <a href="index.html" class="back-link"><i class="ph ph-arrow-left"></i> Volver al inicio</a>
+            <div class="sparkles-header">
+                <div id="tsparticles-precios" class="sparkles-canvas"></div>
+                <h1 class="section-title">Nuestros Precios</h1>
+            </div>
+            <p class="zones-text" style="max-width: 700px; margin: 0 auto;">Transparencia total y sin sorpresas. Precios profesionales para servicios premium a domicilio en todo Tenerife.</p>
+        </div>
+
+        <div class="services-nav">
+            <a href="#vehiculos" class="btn btn-outline btn-sm">Vehículos</a>
+            <a href="#sofas" class="btn btn-outline btn-sm">Sofás y Alfombras</a>
+            <a href="#colchones" class="btn btn-outline btn-sm">Colchones</a>
+        </div>
+        
+        <!-- SECCIÓN VEHÍCULOS -->
+        <h2 id="vehiculos" class="section-subtitle"><i class="ph ph-car"></i> Limpieza de Vehículos</h2>
+        <div class="packages-grid">
+            
+            <!-- PAQUETE ESTÁNDAR -->
+            <div class="package-card">
+                <span class="glow"></span>
+                <div class="package-badge" style="background: #333; color: #fff; border: 1px solid #444;">Básico</div>
+                <h3 class="package-title">Lavado Estándar</h3>
+                <div class="package-prices">
+                    <div class="price-item">
+                        <i class="ph ph-car-profile"></i>
+                        <span>Pequeño</span>
+                        <div class="amount">40€</div>
+                    </div>
+                    <div class="price-item">
+                        <i class="ph ph-car-profile" style="font-size: 2.2rem;"></i>
+                        <span>Mediano</span>
+                        <div class="amount">45€</div>
+                    </div>
+                    <div class="price-item">
+                        <i class="ph ph-van"></i>
+                        <span>Grande</span>
+                        <div class="amount">50€</div>
+                    </div>
+                </div>
+                
+                <h5 style="color:#fff; margin-bottom:10px; border-bottom:1px solid #333; padding-bottom:5px;">Lavado exterior</h5>
+                <ul class="package-features">
+                    <li><i class="ph ph-check-circle"></i> Lavado ecológico en seco</li>
+                    <li><i class="ph ph-check-circle"></i> Limpieza de llantas</li>
+                    <li><i class="ph ph-check-circle"></i> Cristales exteriores</li>
+                    <li><i class="ph ph-check-circle"></i> Brillo protector</li>
+                </ul>
+
+                <h5 style="color:#fff; margin-bottom:10px; border-bottom:1px solid #333; padding-bottom:5px;">Lavado interior</h5>
+                <ul class="package-features">
+                    <li><i class="ph ph-check-circle"></i> Aspirado de moquetas</li>
+                    <li><i class="ph ph-check-circle"></i> Salpicadero y plásticos</li>
+                    <li><i class="ph ph-check-circle"></i> Cristales interiores</li>
+                </ul>
+                <button onclick="openExtrasModal('estandar')" class="btn btn-outline package-btn">Seleccionar</button>
+            </div>
+
+            <!-- PAQUETE COMPLETO -->
+            <div class="package-card premium">
+                <span class="glow"></span>
+                <div class="package-badge">El más completo</div>
+                <h3 class="package-title">Lavado Completo</h3>
+                <div class="package-prices">
+                    <div class="price-item">
+                        <i class="ph ph-car-profile"></i>
+                        <span>Pequeño</span>
+                        <div class="amount">115€</div>
+                    </div>
+                    <div class="price-item">
+                        <i class="ph ph-car-profile" style="font-size: 2.2rem;"></i>
+                        <span>Mediano</span>
+                        <div class="amount">130€</div>
+                    </div>
+                    <div class="price-item">
+                        <i class="ph ph-van"></i>
+                        <span>Grande</span>
+                        <div class="amount">145€</div>
+                    </div>
+                </div>
+                
+                <h5 style="color:#fff; margin-bottom:10px; border-bottom:1px solid #333; padding-bottom:5px;">Lavado exterior</h5>
+                <ul class="package-features">
+                    <li><i class="ph ph-check-circle"></i> Lavado ecológico premium</li>
+                    <li><i class="ph ph-check-circle"></i> Eliminación de suciedad profunda</li>
+                    <li><i class="ph ph-check-circle"></i> Llantas y cristales</li>
+                </ul>
+
+                <h5 style="color:#fff; margin-bottom:10px; border-bottom:1px solid #333; padding-bottom:5px;">Lavado interior</h5>
+                <ul class="package-features">
+                    <li><i class="ph ph-check-circle"></i> <b>Limpieza profunda de tapicería</b></li>
+                    <li><i class="ph ph-check-circle"></i> Detallado de plásticos y puertas</li>
+                    <li><i class="ph ph-check-circle"></i> Desinfección completa</li>
+                </ul>
+                <button onclick="openExtrasModal('premium')" class="btn btn-solid package-btn"><span class="btn-text-content">Seleccionar</span></button>
+            </div>
+
+            <!-- PAQUETE TAPICERÍA -->
+            <div class="package-card">
+                <span class="glow"></span>
+                <h3 class="package-title">Solo Tapicería</h3>
+                <div class="package-prices">
+                    <div class="price-item">
+                        <i class="ph ph-car-profile"></i>
+                        <span>5 asientos</span>
+                        <div class="amount">60€</div>
+                    </div>
+                    <div class="price-item">
+                        <i class="ph ph-van"></i>
+                        <span>7 asientos</span>
+                        <div class="amount">80€</div>
+                    </div>
+                    <div class="price-item">
+                        <i class="ph ph-van" style="font-size: 2.5rem;"></i>
+                        <span>9 asientos</span>
+                        <div class="amount">100€</div>
+                    </div>
+                </div>
+                <p style="color: var(--color-text-muted); margin-bottom: 20px; font-size: 0.9rem;">Ideal para higienizar el interior tras un uso intenso o compra de segunda mano.</p>
+                <ul class="package-features">
+                    <li><i class="ph ph-check-circle"></i> Eliminación de manchas</li>
+                    <li><i class="ph ph-check-circle"></i> Limpieza de fibras profunda</li>
+                    <li><i class="ph ph-check-circle"></i> Eliminación de olores</li>
+                </ul>
+                <button onclick="openExtrasModal('tapiceria')" class="btn btn-outline package-btn">Seleccionar</button>
+            </div>
+        </div>
+
+        <!-- EXTRAS VEHÍCULOS -->
+        <h2 class="section-subtitle"><i class="ph ph-plus-circle"></i> Extras y Tratamientos</h2>
+        <div class="extras-grid">
+            <div class="extra-card">
+                <div>
+                    <i class="ph ph-dog extra-icon"></i>
+                    <h3 class="extra-title">Pelos de Mascotas</h3>
+                    <p class="extra-price">15€</p>
+                    <p class="extra-desc">Eliminación exhaustiva de pelos adheridos con herramientas especiales.</p>
+                </div>
+            </div>
+            <div class="extra-card">
+                <div>
+                    <i class="ph ph-flashlight extra-icon"></i>
+                    <h3 class="extra-title">Pulido de Faros</h3>
+                    <p class="extra-price">30€</p>
+                    <p class="extra-desc">Recupera la transparencia y seguridad de tus faros.</p>
+                </div>
+            </div>
+            <div class="extra-card">
+                <div>
+                    <i class="ph ph-drop extra-icon"></i>
+                    <h3 class="extra-title">Hidratación Plásticos</h3>
+                    <p class="extra-price">20€</p>
+                    <p class="extra-desc">Protección UV y recuperación del tono original en plásticos.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN SOFÁS Y ALFOMBRAS -->
+        <h2 id="sofas" class="section-subtitle"><i class="ph ph-couch"></i> Sofás y Alfombras</h2>
+        <div class="service-card" style="padding: 0; margin-bottom: 60px;">
+            <span class="glow"></span>
+            <div class="service-card-content" style="display: block; padding: 40px;">
+                <p style="color: #fff; font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
+                    Debido a la gran variedad de tamaños y tejidos, estos servicios se realizan bajo presupuesto personalizado.
+                </p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
+                    <div style="background: rgba(138, 195, 78, 0.05); padding: 30px; border-radius: 12px; text-align: center; border: 1px solid rgba(138, 195, 78, 0.2);">
+                        <i class="ph ph-couch" style="font-size: 3rem; color: var(--color-green); margin-bottom: 15px; display: block;"></i>
+                        <h4 style="color: #fff; margin-bottom: 10px;">Sofás</h4>
+                        <span style="color: var(--color-green); font-size: 2rem; font-weight: 800;">Desde 30€</span>
+                    </div>
+                    <div style="background: rgba(138, 195, 78, 0.05); padding: 30px; border-radius: 12px; text-align: center; border: 1px solid rgba(138, 195, 78, 0.2);">
+                        <i class="ph ph-rug" style="font-size: 3rem; color: var(--color-green); margin-bottom: 15px; display: block;"></i>
+                        <h4 style="color: #fff; margin-bottom: 10px;">Alfombras</h4>
+                        <span style="color: var(--color-green); font-size: 2rem; font-weight: 800;">Desde 15€</span>
+                    </div>
+                </div>
+                <div style="display: flex; justify-content: center; gap: 20px; margin-top: 40px;">
+                    <a href="index.html?service=sofas#presupuesto" class="btn btn-solid"><span class="btn-text-content">Pedir Presupuesto</span></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN COLCHONES -->
+        <h2 id="colchones" class="section-subtitle"><i class="ph ph-bed"></i> Colchones</h2>
+        <div class="mattress-grid">
+            <div class="mattress-card">
+                <div class="mattress-size">90cm</div><div class="mattress-price">50€</div>
+                <a href="index.html?service=colchones&size=90#presupuesto" class="btn btn-outline btn-sm">Seleccionar</a>
+            </div>
+            <div class="mattress-card">
+                <div class="mattress-size">135cm</div><div class="mattress-price">55€</div>
+                <a href="index.html?service=colchones&size=135#presupuesto" class="btn btn-outline btn-sm">Seleccionar</a>
+            </div>
+            <div class="mattress-card">
+                <div class="mattress-size">150cm</div><div class="mattress-price">60€</div>
+                <a href="index.html?service=colchones&size=150#presupuesto" class="btn btn-outline btn-sm">Seleccionar</a>
+            </div>
+            <div class="mattress-card">
+                <div class="mattress-size">180cm</div><div class="mattress-price">65€</div>
+                <a href="index.html?service=colchones&size=180#presupuesto" class="btn btn-outline btn-sm">Seleccionar</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer id="contacto" class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Info de Empresa -->
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="Diseño sin título.png" alt="JF Ecolavado Logo" class="footer-logo-img">
+                    </div>
+                    <p class="footer-description">Limpieza profesional a domicilio en Tenerife. Especialistas en devolver el aspecto original a tu vehículo, sofá o colchón con tecnología ecológica.</p>
+                </div>
+
+                <!-- Enlaces Útiles -->
+                <div>
+                    <h3 class="footer-title">Enlaces Útiles</h3>
+                    <ul class="footer-links">
+                        <li><a href="resultados.html"><i class="ph ph-image"></i> Nuestros Trabajos</a></li>
+                        <li><a href="precios.html"><i class="ph ph-tag"></i> Tarifas y Paquetes</a></li>
+                        <li><a href="index.html#servicios"><i class="ph ph-sparkle"></i> Servicios</a></li>
+                        <li><a href="index.html#como-trabajamos"><i class="ph ph-info"></i> Cómo Trabajamos</a></li>
+                    </ul>
+                </div>
+
+                <!-- Redes Sociales -->
+                <div>
+                    <h3 class="footer-title">Síguenos</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://instagram.com/JF_ECOLAVADO" target="_blank"><i class="ph ph-instagram-logo"></i> Instagram</a></li>
+                        <li><a href="https://www.facebook.com/profile.php?id=61583520435495" target="_blank"><i class="ph ph-facebook-logo"></i> Facebook</a></li>
+                        <li><a href="https://wa.me/34614423060" target="_blank"><i class="ph ph-whatsapp-logo"></i> WhatsApp</a></li>
+                        <li><a href="tel:614423060"><i class="ph ph-phone"></i> Llamar Directo</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="footer-newsletter">
+                    <h3 class="footer-title">Nuestras Ofertas</h3>
+                    <p class="footer-description" style="margin-bottom: 20px;">Suscríbete para recibir promociones exclusivas y consejos de mantenimiento.</p>
+                    <div class="newsletter-form-container">
+                        <form id="newsletter-form" class="newsletter-form">
+                            <input type="email" id="newsletter-email" class="newsletter-input" placeholder="Tu email..." required>
+                            <button type="submit" class="newsletter-btn" id="newsletter-submit">Unirse</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 JF Ecolavado. Todos los derechos reservados.</p>
+                <div style="display: flex; gap: 20px;">
+                    <a href="aviso-legal.html" style="color: var(--color-text-muted); font-size: 0.8rem;">Aviso Legal</a>
+                    <a href="politica-privacidad.html" style="color: var(--color-text-muted); font-size: 0.8rem;">Privacidad</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL DE EXTRAS -->
+    <div id="extras-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>¿Añadir servicios extra?</h2>
+                <p>Selecciona uno o varios para continuar con extras</p>
+            </div>
+            <div class="extras-selection">
+                <label class="extra-option" for="m_extra_pelos">
+                    <span>🐾 Pelos de mascota (+15€)</span>
+                    <input type="checkbox" id="m_extra_pelos" onchange="checkExtras()">
+                </label>
+                <label class="extra-option" for="m_extra_faros">
+                    <span>💡 Pulido de faros (+30€)</span>
+                    <input type="checkbox" id="m_extra_faros" onchange="checkExtras()">
+                </label>
+                <label class="extra-option" for="m_extra_plasticos">
+                    <span>✨ Hidratación plásticos (+20€)</span>
+                    <input type="checkbox" id="m_extra_plasticos" onchange="checkExtras()">
+                </label>
+            </div>
+            <div class="modal-footer">
+                <button onclick="goToForm(false)" class="btn btn-outline">No, gracias</button>
+                <button id="btn-continue-extras" onclick="goToForm(true)" class="btn" disabled>Continuar con Extras</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedPkg = '';
+        
+        function openExtrasModal(pkg) {
+            selectedPkg = pkg;
+            document.getElementById('extras-modal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function checkExtras() {
+            const anyChecked = document.getElementById('m_extra_pelos').checked || 
+                             document.getElementById('m_extra_faros').checked || 
+                             document.getElementById('m_extra_plasticos').checked;
+            document.getElementById('btn-continue-extras').disabled = !anyChecked;
+        }
+
+        function goToForm(withExtras) {
+            let url = `index.html?pkg=${selectedPkg}`;
+            if (withExtras) {
+                if (document.getElementById('m_extra_pelos').checked) url += '&extra_pelos=si';
+                if (document.getElementById('m_extra_faros').checked) url += '&extra_faros=si';
+                if (document.getElementById('m_extra_plasticos').checked) url += '&extra_plasticos=si';
+            }
+            window.location.href = url + '#presupuesto';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('extras-modal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+                document.body.style.overflow = 'auto';
+            }
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

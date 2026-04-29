@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestros Resultados | JF Ecolavado</title>
+    <meta name="description" content="Galería de resultados de limpieza profesional en Tenerife. Antes y después en vehículos, sofás, colchones y más.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: var(--color-bg);
+            background-image: radial-gradient(circle at 50% 0%, #152219 0%, var(--color-bg) 70%);
+            min-height: 100vh;
+            color: var(--color-text);
+        }
+        
+        .results-page-hero {
+            padding: 150px 0 60px;
+            text-align: center;
+        }
+        
+        .gallery-filter {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: var(--radius-pill);
+            cursor: pointer;
+            transition: var(--transition-fast);
+            font-size: 0.9rem;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--color-green);
+            color: #000;
+            border-color: var(--color-green);
+        }
+
+        .results-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 100px;
+        }
+
+        .back-home {
+            margin-bottom: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--color-green);
+            font-weight: 600;
+            transition: var(--transition-fast);
+        }
+
+        .back-home:hover {
+            transform: translateX(-5px);
+        }
+    </style>
+</head>
+<body>
+
+
+    <!-- NAVEGACIÓN -->
+    <header class="navbar scrolled">
+        <div class="logo">
+            <a href="index.html#hero"><img src="Diseño sin título.png" alt="JF Ecolavado Logo" class="navbar-logo" style="height: 45px;"></a>
+        </div>
+        <button class="mobile-menu-toggle" aria-label="Abrir menú">
+            <i class="ph ph-list"></i>
+        </button>
+        <nav class="nav-links">
+            <ul>
+                <li><a href="index.html#hero">Inicio</a></li>
+                <li><a href="index.html#servicios">Servicios</a></li>
+                <li><a href="precios.html">Precios</a></li>
+                <li><a href="resultados.html" class="active">Resultados</a></li>
+                <li><a href="index.html#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="results-page-hero">
+            <a href="index.html" class="back-home"><i class="ph ph-arrow-left"></i> Volver al inicio</a>
+            <h1 class="section-title">Galería de Resultados</h1>
+            <p style="color: var(--color-text-muted); max-width: 600px; margin: 0 auto;">Explora nuestra galería de trabajos reales. Resultados profesionales con productos ecológicos.</p>
+        </section>
+
+        <div class="results-gallery">
+            <!-- TRABAJO 1: SOFÁ 1 -->
+            <div class="comparison-card reveal">
+                <h3>Limpieza de Sofá Azul</h3>
+                <div class="comparison-slider">
+                    <div class="image-container">
+                        <img src="resultados/despues.JPEG" alt="Sofá después" class="image-after">
+                        <img src="resultados/antes.JPEG" alt="Sofá antes" class="image-before">
+                    </div>
+                    <input type="range" min="0" max="100" value="50" class="slider-input" aria-label="Deslizador de comparación">
+                    <div class="slider-line"></div>
+                    <div class="slider-button"><i class="ph ph-caret-left-right"></i></div>
+                    <div class="comparison-label label-before">Antes</div>
+                    <div class="comparison-label label-after">Después</div>
+                </div>
+            </div>
+
+            <!-- TRABAJO 2: SOFÁ 2 -->
+            <div class="comparison-card reveal" style="transition-delay: 0.1s;">
+                <h3>Sofá Turquesa (Manchas)</h3>
+                <div class="comparison-slider">
+                    <div class="image-container">
+                        <img src="resultados/despues 1.JPEG" alt="Sofá después" class="image-after">
+                        <img src="resultados/antes 1.JPEG" alt="Sofá antes" class="image-before">
+                    </div>
+                    <input type="range" min="0" max="100" value="50" class="slider-input" aria-label="Deslizador de comparación">
+                    <div class="slider-line"></div>
+                    <div class="slider-button"><i class="ph ph-caret-left-right"></i></div>
+                    <div class="comparison-label label-before">Antes</div>
+                    <div class="comparison-label label-after">Después</div>
+                </div>
+            </div>
+
+            <!-- TRABAJO 3: SOFÁ 3 -->
+            <div class="comparison-card reveal" style="transition-delay: 0.2s;">
+                <h3>Tapicería Oscura</h3>
+                <div class="comparison-slider">
+                    <div class="image-container">
+                        <img src="resultados/despues 2.JPG" alt="Tapicería después" class="image-after">
+                        <img src="resultados/antes 2.JPG" alt="Tapicería antes" class="image-before">
+                    </div>
+                    <input type="range" min="0" max="100" value="50" class="slider-input" aria-label="Deslizador de comparación">
+                    <div class="slider-line"></div>
+                    <div class="slider-button"><i class="ph ph-caret-left-right"></i></div>
+                    <div class="comparison-label label-before">Antes</div>
+                    <div class="comparison-label label-after">Después</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer id="contacto" class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Info de Empresa -->
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="Diseño sin título.png" alt="JF Ecolavado Logo" class="footer-logo-img">
+                    </div>
+                    <p class="footer-description">Limpieza profesional a domicilio en Tenerife. Especialistas en devolver el aspecto original a tu vehículo, sofá o colchón con tecnología ecológica.</p>
+                </div>
+
+                <!-- Enlaces Útiles -->
+                <div>
+                    <h3 class="footer-title">Enlaces Útiles</h3>
+                    <ul class="footer-links">
+                        <li><a href="resultados.html"><i class="ph ph-image"></i> Nuestros Trabajos</a></li>
+                        <li><a href="precios.html"><i class="ph ph-tag"></i> Tarifas y Paquetes</a></li>
+                        <li><a href="index.html#servicios"><i class="ph ph-sparkle"></i> Servicios</a></li>
+                        <li><a href="index.html#como-trabajamos"><i class="ph ph-info"></i> Cómo Trabajamos</a></li>
+                    </ul>
+                </div>
+
+                <!-- Redes Sociales -->
+                <div>
+                    <h3 class="footer-title">Síguenos</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://instagram.com/JF_ECOLAVADO" target="_blank"><i class="ph ph-instagram-logo"></i> Instagram</a></li>
+                        <li><a href="https://www.facebook.com/profile.php?id=61583520435495" target="_blank"><i class="ph ph-facebook-logo"></i> Facebook</a></li>
+                        <li><a href="https://wa.me/34614423060" target="_blank"><i class="ph ph-whatsapp-logo"></i> WhatsApp</a></li>
+                        <li><a href="tel:614423060"><i class="ph ph-phone"></i> Llamar Directo</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="footer-newsletter">
+                    <h3 class="footer-title">Nuestras Ofertas</h3>
+                    <p class="footer-description" style="margin-bottom: 20px;">Suscríbete para recibir promociones exclusivas y consejos de mantenimiento.</p>
+                    <div class="newsletter-form-container">
+                        <form id="newsletter-form" class="newsletter-form">
+                            <input type="email" id="newsletter-email" class="newsletter-input" placeholder="Tu email..." required>
+                            <button type="submit" class="newsletter-btn" id="newsletter-submit">Unirse</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 JF Ecolavado. Todos los derechos reservados.</p>
+                <div style="display: flex; gap: 20px;">
+                    <a href="aviso-legal.html" style="color: var(--color-text-muted); font-size: 0.8rem;">Aviso Legal</a>
+                    <a href="politica-privacidad.html" style="color: var(--color-text-muted); font-size: 0.8rem;">Privacidad</a>
+                    <a href="politica-cookies.html" style="color: var(--color-text-muted); font-size: 0.8rem;">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
