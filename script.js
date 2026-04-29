@@ -483,6 +483,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Debes aceptar la Política de Privacidad.');
                 return;
             }
+
+            // Photo validation for Sofas and Alfombras
+            const servicio = document.getElementById('servicio').value;
+            const fotosInput = document.getElementById('fotos');
+            if ((servicio === 'sofas' || servicio === 'alfombras') && (!fotosInput.files || fotosInput.files.length === 0)) {
+                alert('Para servicios de Sofás o Alfombras, es obligatorio subir al menos una foto para poder darte un presupuesto exacto.');
+                fotosInput.focus();
+                return;
+            }
             
             // Simulate form submission
             const btn = form.querySelector('button[type="submit"]');
@@ -840,7 +849,7 @@ document.addEventListener('DOMContentLoaded', () => {
         colchones: {
             '90': 50, '135': 55, '150': 60, '180': 65, '200': 75
         },
-        sofas: 25, // por plaza (base)
+        sofas: 30, // por plaza/butaca (base)
         alfombras: 15, // base
         extras: {
             extra_pelos: 15,
@@ -913,8 +922,8 @@ document.addEventListener('DOMContentLoaded', () => {
             total += price;
             html += `<div class="cart-item">
                         <div class="cart-item-info">
-                            <span class="cart-item-name">Limpieza de ${servicio.charAt(0).toUpperCase() + servicio.slice(1)}</span>
-                            <span class="cart-item-detail">Precio base (consultar detalles)</span>
+                            <span class="cart-item-name">Limpieza de ${servicio === 'sofas' ? 'Butaca / Sofá' : 'Alfombra'}</span>
+                            <span class="cart-item-detail">${servicio === 'sofas' ? 'Precio por plaza/butaca' : 'Precio base (según medidas)'}</span>
                         </div>
                         <span class="cart-item-price">${price}€</span>
                     </div>`;
