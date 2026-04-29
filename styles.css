@@ -273,7 +273,7 @@ ul {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: opacity 0.8s ease;
+    transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .loader-wrapper.fade-out {
@@ -286,17 +286,20 @@ ul {
 }
 
 .loader-logo-img {
-    max-width: 250px;
-    height: auto;
-    margin-bottom: 20px;
+    height: 90px; /* Tamaño exacto del navbar-logo */
+    width: auto;
+    position: absolute;
+    top: 0;
+    left: 5%; /* Mismo padding lateral que la navbar */
+    mix-blend-mode: lighten;
 }
 
 .loader-bar-container {
     width: 200px;
-    height: 4px;
+    height: 3px;
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 2px;
-    margin: 0 auto 15px;
+    margin: 120px auto 15px; /* Bajamos la barra para que no tape el logo */
     overflow: hidden;
 }
 
