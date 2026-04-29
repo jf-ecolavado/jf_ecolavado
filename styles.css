@@ -2290,12 +2290,12 @@ ul {
 
 @keyframes floatSubtleMap {
     0%, 100% { 
-        transform: translateY(0) scale(1); 
+        transform: translateY(0) scale(1) rotate(0deg); 
         filter: drop-shadow(0 0 20px rgba(138, 195, 78, 0.2));
     }
     50% { 
-        transform: translateY(-15px) scale(1.03); 
-        filter: drop-shadow(0 0 45px rgba(138, 195, 78, 0.5));
+        transform: translateY(-25px) scale(1.08) rotate(1deg); 
+        filter: drop-shadow(0 0 65px rgba(138, 195, 78, 0.7));
     }
 }
 
