@@ -502,8 +502,8 @@ document.addEventListener('DOMContentLoaded', () => {
             formData.append('Precio Estimado', total);
 
             try {
-                // 1. SEND TO FORMSPREE (EMAIL)
-                const response = await fetch('https://formspree.io/f/maqvwjdz', {
+                // 1. SEND TO GETFORM (EMAIL WITH PHOTOS)
+                const response = await fetch('https://getform.io/f/gsgsrq95g39', {
                     method: 'POST',
                     body: formData,
                     headers: {
