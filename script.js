@@ -472,10 +472,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 8. FORM SUBMISSION (WHATSAPP) ---
+    // --- 8. FORM SUBMISSION (EMAIL + WHATSAPP) ---
     const form = document.getElementById('presupuesto-form');
     if (form) {
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
             
             const privacyChecked = document.querySelector('input[name="privacidad"]').checked;
@@ -492,65 +492,91 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="btn-text-content">Enviando...</span>';
+            submitBtn.disabled = true;
+
             const formData = new FormData(form);
-            const nombre = formData.get('nombre');
-            const telefono = formData.get('telefono');
-            const zona = formData.get('zona');
-            const paquete = formData.get('paquete_coche');
-            const tamano = formData.get('tamano_coche');
-            const colchon = formData.get('medida_colchon');
-            const suciedad = formData.get('suciedad');
-            const fecha = formData.get('fecha');
-            const hora = formData.get('hora');
-            const mensaje = formData.get('mensaje');
             const total = document.getElementById('cart-total').textContent;
+            formData.append('Precio Estimado', total);
 
-            // Build WhatsApp Message
-            let waMsg = `*SOLICITUD DE PRESUPUESTO - JF ECOLAVADO*%0A%0A`;
-            waMsg += `*Cliente:* ${nombre}%0A`;
-            waMsg += `*Teléfono:* ${telefono}%0A`;
-            waMsg += `*Ubicación:* ${zona}%0A%0A`;
-            
-            waMsg += `*SERVICIO SELECCIONADO:*%0A`;
-            if (servicio === 'vehiculos') {
-                waMsg += `• Lavado de Vehículo (${tamano})%0A`;
-                waMsg += `• Paquete: ${paquete.charAt(0).toUpperCase() + paquete.slice(1)}%0A`;
-            } else if (servicio === 'colchones') {
-                waMsg += `• Limpieza de Colchón (${colchon}cm)%0A`;
-            } else if (servicio === 'sofas') {
-                waMsg += `• Limpieza de Sofás / Butacas%0A`;
-            } else if (servicio === 'alfombras') {
-                waMsg += `• Limpieza de Alfombras%0A`;
+            try {
+                // 1. SEND TO FORMSPREE (EMAIL)
+                const response = await fetch('https://formspree.io/jfecolavado@gmail.com', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    // 2. BUILD AND OPEN WHATSAPP
+                    const nombre = formData.get('nombre');
+                    const telefono = formData.get('telefono');
+                    const zona = formData.get('zona');
+                    const paquete = formData.get('paquete_coche');
+                    const tamano = formData.get('tamano_coche');
+                    const colchon = formData.get('medida_colchon');
+                    const suciedad = formData.get('suciedad');
+                    const fecha = formData.get('fecha');
+                    const hora = formData.get('hora');
+                    const mensaje = formData.get('mensaje');
+
+                    let waMsg = `*SOLICITUD DE PRESUPUESTO - JF ECOLAVADO*%0A%0A`;
+                    waMsg += `*Cliente:* ${nombre}%0A`;
+                    waMsg += `*Teléfono:* ${telefono}%0A`;
+                    waMsg += `*Ubicación:* ${zona}%0A%0A`;
+                    
+                    waMsg += `*SERVICIO SELECCIONADO:*%0A`;
+                    if (servicio === 'vehiculos') {
+                        waMsg += `• Lavado de Vehículo (${tamano})%0A`;
+                        waMsg += `• Paquete: ${paquete.charAt(0).toUpperCase() + paquete.slice(1)}%0A`;
+                    } else if (servicio === 'colchones') {
+                        waMsg += `• Limpieza de Colchón (${colchon}cm)%0A`;
+                    } else if (servicio === 'sofas') {
+                        waMsg += `• Limpieza de Sofás / Butacas%0A`;
+                    } else if (servicio === 'alfombras') {
+                        waMsg += `• Limpieza de Alfombras%0A`;
+                    }
+
+                    let extras = [];
+                    if (formData.get('extra_pelos')) extras.push('Eliminación de pelos');
+                    if (formData.get('extra_faros')) extras.push('Pulido de faros');
+                    if (formData.get('extra_plasticos')) extras.push('Recuperar plásticos');
+                    if (formData.get('manchas')) extras.push('Tratamiento de manchas');
+                    if (formData.get('mascotas')) extras.push('Pelos de mascota');
+                    
+                    if (extras.length > 0) {
+                        waMsg += `%0A*EXTRAS:*%0A• ${extras.join('%0A• ')}%0A`;
+                    }
+
+                    waMsg += `%0A*DETALLES:*%0A`;
+                    waMsg += `• Suciedad: ${suciedad}%0A`;
+                    if (fecha) waMsg += `• Fecha: ${fecha}%0A`;
+                    if (hora) waMsg += `• Hora: ${hora}%0A`;
+                    if (mensaje) waMsg += `%0A*Nota:* ${mensaje}%0A`;
+
+                    waMsg += `%0A*PRECIO ESTIMADO:* ${total}%0A%0A`;
+                    waMsg += `_Le acabo de enviar las fotos también por correo electrónico._`;
+
+                    const waURL = `https://wa.me/34614423060?text=${waMsg}`;
+                    
+                    alert('¡Presupuesto enviado correctamente al correo! Ahora te redirigimos a WhatsApp para confirmar.');
+                    window.open(waURL, '_blank');
+                    form.reset();
+                    document.getElementById('fotos-preview').innerHTML = '';
+                    updateCart();
+                } else {
+                    alert('Hubo un problema al enviar el correo. Por favor, inténtalo de nuevo o contáctanos por WhatsApp directamente.');
+                }
+            } catch (error) {
+                alert('Error de conexión. Por favor, revisa tu internet.');
+            } finally {
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
             }
-
-            // Extras
-            let extras = [];
-            if (formData.get('extra_pelos')) extras.push('Eliminación de pelos');
-            if (formData.get('extra_faros')) extras.push('Pulido de faros');
-            if (formData.get('extra_plasticos')) extras.push('Recuperar plásticos');
-            if (formData.get('manchas')) extras.push('Tratamiento de manchas');
-            if (formData.get('mascotas')) extras.push('Pelos de mascota');
-            
-            if (extras.length > 0) {
-                waMsg += `%0A*EXTRAS:*%0A• ${extras.join('%0A• ')}%0A`;
-            }
-
-            waMsg += `%0A*DETALLES:*%0A`;
-            waMsg += `• Suciedad: ${suciedad}%0A`;
-            if (fecha) waMsg += `• Fecha: ${fecha}%0A`;
-            if (hora) waMsg += `• Hora: ${hora}%0A`;
-            if (mensaje) waMsg += `%0A*Nota:* ${mensaje}%0A`;
-
-            waMsg += `%0A*PRECIO ESTIMADO:* ${total}%0A%0A`;
-            
-            if (servicio === 'sofas' || servicio === 'alfombras') {
-                waMsg += `_A continuación adjunto las fotos para la valoración final..._`;
-            } else {
-                waMsg += `_Adjunto fotos opcionales para mejor valoración..._`;
-            }
-
-            const waURL = `https://wa.me/34614423060?text=${waMsg}`;
-            window.open(waURL, '_blank');
         });
     }
 
