@@ -833,13 +833,15 @@ ul {
     display: grid;
     grid-template-rows: 0fr;
     opacity: 0;
-    transition: grid-template-rows 0.4s ease, opacity 0.4s ease, margin 0.4s ease;
+    margin-top: 0;
+    transition: grid-template-rows 0.4s ease 0.8s, opacity 0.4s ease 0.8s, margin 0.4s ease 0.8s;
 }
 
 .service-card:hover .service-card-details {
     grid-template-rows: 1fr;
     opacity: 1;
     margin-top: 15px;
+    transition: grid-template-rows 0.2s ease, opacity 0.2s ease, margin 0.2s ease;
 }
 
 .details-content {
@@ -876,15 +878,16 @@ ul {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
     justify-content: center;
-    gap: 12px; /* Espacio entre los dos botones */
+    gap: 12px;
     opacity: 0;
     transform: translateY(10px);
-    transition: all 0.4s ease;
+    transition: all 0.4s ease 0.8s;
 }
 
 .service-card:hover .service-card-footer {
     opacity: 1;
     transform: translateY(0);
+    transition: all 0.2s ease;
 }
 
 /* Ajustes Responsive */
