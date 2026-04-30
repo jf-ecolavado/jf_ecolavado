@@ -2823,7 +2823,6 @@ ul {
         pointer-events: none;
         display: none;
     }
-}
 
     /* Global Responsive Tweaks */
     .section {
@@ -2842,18 +2841,17 @@ ul {
     .pricing-grid {
         grid-template-columns: 1fr !important;
     }
-
+    
     .form-layout-wrapper {
-        grid-template-columns: 1fr 320px !important;
-        gap: 20px !important;
+        grid-template-columns: 1fr !important; /* Stack on mobile */
+        gap: 30px !important;
     }
-
+    
     .form-sidebar {
-        position: sticky;
-        top: 100px !important;
-        z-index: 100;
+        position: static !important; /* Don't stick on mobile */
+        width: 100% !important;
     }
-
+    
     .form-main {
         padding: 30px 20px !important;
     }
