@@ -42,12 +42,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 lastDrawnIndex = index;
             }
         };
+        let tickingCanvas = false;
         window.addEventListener('scroll', () => {
-            const scrollY = window.scrollY;
-            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-            if (maxScroll > 0) {
-                const frac = Math.max(0, Math.min(1, scrollY / maxScroll));
-                renderFrame(Math.floor(frac * (frameCount - 1)));
+            if (!tickingCanvas) {
+                window.requestAnimationFrame(() => {
+                    const scrollY = window.scrollY;
+                    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+                    if (maxScroll > 0) {
+                        const frac = Math.max(0, Math.min(1, scrollY / maxScroll));
+                        renderFrame(Math.floor(frac * (frameCount - 1)));
+                    }
+                    tickingCanvas = false;
+                });
+                tickingCanvas = true;
             }
         });
     }
@@ -58,10 +65,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const currentFrameM = index => `./principal-movil/ezgif-frame-${index.toString().padStart(3, '0')}.jpg`;
         const imagesM = [];
         let imagesLoadedM = 0;
+        let lastDrawnM = 0;
         const resizeCanvasM = () => {
             canvasMobile.width  = window.innerWidth;
             canvasMobile.height = window.innerHeight;
-            if (imagesLoadedM > 0) renderFrameM(lastDrawnM);
+            renderFrameM(lastDrawnM);
         };
         window.addEventListener('resize', resizeCanvasM);
         for (let i = 1; i <= frameCountM; i++) {
@@ -69,11 +77,10 @@ document.addEventListener('DOMContentLoaded', () => {
             img.src = currentFrameM(i);
             img.onload = () => {
                 imagesLoadedM++;
-                if (imagesLoadedM === 1 || imagesLoadedM === frameCountM) resizeCanvasM();
-            };
+                if (imagesLoadedM === 1) resizeCanvasM();
+            }
             imagesM.push(img);
         }
-        let lastDrawnM = 0;
         const renderFrameM = (index) => {
             if (imagesM[index] && imagesM[index].complete && imagesM[index].naturalWidth > 0) {
                 const img = imagesM[index];
@@ -87,12 +94,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 lastDrawnM = index;
             }
         };
+        let tickingM = false;
         window.addEventListener('scroll', () => {
-            const scrollY = window.scrollY;
-            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-            if (maxScroll > 0) {
-                const frac = Math.max(0, Math.min(1, scrollY / maxScroll));
-                renderFrameM(Math.floor(frac * (frameCountM - 1)));
+            if (!tickingM) {
+                window.requestAnimationFrame(() => {
+                    const scrollY   = window.scrollY;
+                    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+                    if (maxScroll > 0) {
+                        const frac = Math.max(0, Math.min(1, scrollY / maxScroll));
+                        renderFrameM(Math.floor(frac * (frameCountM - 1)));
+                    }
+                    tickingM = false;
+                });
+                tickingM = true;
             }
         });
     }
