@@ -194,52 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.addEventListener('pointermove', syncPointer);
 
-    // --- 4. NEWSLETTER FORM ---
-    const newsletterForm = document.getElementById('newsletter-form');
-    const newsletterStatus = document.getElementById('newsletter-status');
-    const statusMsg = newsletterStatus?.querySelector('.status-msg');
 
-    if (newsletterForm) {
-        newsletterForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const emailInput = document.getElementById('newsletter-email');
-            const submitBtn = document.getElementById('newsletter-submit');
-            
-            if (!emailInput.value) return;
-
-            // Simular envío
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Uniéndose...';
-
-            try {
-                // Simulamos una demora de red
-                await new Promise(resolve => setTimeout(resolve, 1500));
-                
-                // Éxito
-                newsletterStatus.classList.add('active');
-                newsletterStatus.classList.add('status-success');
-                statusMsg.textContent = '¡Suscrito con éxito! 🎉';
-                emailInput.value = '';
-
-            } catch (error) {
-                newsletterStatus.classList.add('active');
-                newsletterStatus.classList.add('status-error');
-                statusMsg.textContent = 'Error. Inténtalo de nuevo.';
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Unirse';
-                
-                // Resetear estado después de 3 segundos
-                setTimeout(() => {
-                    newsletterStatus.classList.remove('active');
-                    setTimeout(() => {
-                        newsletterStatus.classList.remove('status-success', 'status-error');
-                        statusMsg.textContent = '';
-                    }, 400);
-                }, 3000);
-            }
-        });
-    }
 
     // --- URL PARAMS HANDLER ---
     function handleUrlParams() {
