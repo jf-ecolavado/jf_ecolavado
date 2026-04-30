@@ -2891,6 +2891,7 @@ ul {
     z-index: -1;
     object-fit: cover;
     pointer-events: none;
+    background: radial-gradient(circle at 50% 0%, #1a2e22 0%, #050505 100%); /* Premium fallback background */
 }
 
 /* Desktop: show desktop canvas, hide mobile canvas */

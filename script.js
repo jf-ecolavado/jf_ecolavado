@@ -335,22 +335,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- 4. SCROLL REVEAL ---
-    const reveals = document.querySelectorAll('.reveal');
-    const revealOnScroll = () => {
+    window.addEventListener('scroll', revealOnScroll);
+    // Initial call to reveal elements already in viewport
+    revealOnScroll();
+
+    function revealOnScroll() {
         const windowHeight = window.innerHeight;
         const elementVisible = 100;
         
+        const reveals = document.querySelectorAll('.reveal');
         reveals.forEach(reveal => {
             const elementTop = reveal.getBoundingClientRect().top;
             if (elementTop < windowHeight - elementVisible) {
                 reveal.classList.add('active');
             }
         });
-    };
-    
-    window.addEventListener('scroll', revealOnScroll);
-    // Initial call to reveal elements already in viewport
-    revealOnScroll();
+    }
 
     // --- 4.5 IMAGE SEQUENCE ANIMATION LOGIC ---
     const sequenceContainers = document.querySelectorAll('.sequence-container');
@@ -799,7 +799,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const renderFrame = (index) => {
             if (images[index] && images[index].complete && images[index].naturalWidth > 0) {
-                // Object-fit: cover logic for canvas
                 const img = images[index];
                 const hRatio = canvas.width / img.width;
                 const vRatio = canvas.height / img.height;
@@ -845,7 +844,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const ctxM = canvasMobile.getContext('2d');
         const frameCountM = 40;
         const currentFrameM = index =>
-            `principal%20movil/ezgif-frame-${index.toString().padStart(3, '0')}.jpg`;
+            `principal-movil/ezgif-frame-${index.toString().padStart(3, '0')}.jpg`;
 
         const imagesM = [];
         let lastDrawnM = 0; // Start at the first frame
