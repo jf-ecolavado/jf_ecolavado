@@ -40,8 +40,7 @@ html {
 }
 
 body {
-    background-color: #0d0d0d; /* Base color */
-    background-attachment: fixed;
+    background-color: transparent !important;
     color: var(--color-text);
     font-family: var(--font-main);
     line-height: 1.6;
@@ -81,6 +80,7 @@ ul {
 .section {
     padding: 70px 0;
     position: relative;
+    z-index: 10;
 }
 
 .results-section {
