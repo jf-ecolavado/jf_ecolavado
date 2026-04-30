@@ -744,13 +744,18 @@
     </div>
 
     <script>
-        // EMERGENCY FALLBACK: Force hide loader if it's still visible after 4 seconds
+        // EMERGENCY FALLBACK: Force hide loader and SHOW elements if it's still visible after 4 seconds
         setTimeout(function() {
             var loader = document.getElementById('loader');
             if (loader && loader.style.display !== 'none') {
                 loader.classList.add('fade-out');
                 setTimeout(function() {
                     loader.style.display = 'none';
+                    // FORCE VISIBILITY: Make all hidden elements visible
+                    var reveals = document.querySelectorAll('.reveal');
+                    for (var i = 0; i < reveals.length; i++) {
+                        reveals[i].classList.add('active');
+                    }
                 }, 500);
             }
         }, 4000);
