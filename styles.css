@@ -286,12 +286,14 @@ ul {
 }
 
 .loader-logo-img {
-    height: 90px; /* Tamaño exacto del navbar-logo */
+    height: 90px;
     width: auto;
-    position: absolute;
+    position: fixed; /* Cambiado a fixed para asegurar posición */
     top: 0;
-    left: 5%; /* Mismo padding lateral que la navbar */
+    left: 5%;
+    z-index: 10000 !important; /* Capa máxima */
     mix-blend-mode: lighten;
+    pointer-events: none;
 }
 
 .loader-bar-container {
@@ -299,7 +301,7 @@ ul {
     height: 3px;
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 2px;
-    margin: 120px auto 15px; /* Bajamos la barra para que no tape el logo */
+    margin: 40px auto 15px; /* Ajustamos el margen para que no se pierda la barra */
     overflow: hidden;
 }
 
