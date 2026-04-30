@@ -4,36 +4,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const loader = document.getElementById('loader');
     const loaderBar = document.querySelector('.loader-bar');
     
-    if (loader && loaderBar) {
+    if (loader) {
         // Only show loader if it hasn't been shown in this session
         if (sessionStorage.getItem('jf_loader_shown')) {
             loader.style.display = 'none';
-            // Wait a tiny bit for the DOM to settle before revealing
             setTimeout(() => {
                 if (typeof revealOnScroll === 'function') revealOnScroll();
             }, 100);
         } else {
-            // Simulate loading
-            let progress = 0;
-            const loadInterval = setInterval(() => {
-                progress += Math.random() * 30;
-                if (progress >= 100) {
-                    progress = 100;
-                    clearInterval(loadInterval);
-                    loaderBar.style.width = '100%';
-                    
-                    setTimeout(() => {
-                        loader.classList.add('fade-out');
-                        sessionStorage.setItem('jf_loader_shown', 'true');
-                        // Initialize animations after loader disappears
-                        setTimeout(() => {
-                            if (typeof revealOnScroll === 'function') revealOnScroll();
-                        }, 500);
-                    }, 800);
-                } else {
-                    loaderBar.style.width = `${progress}%`;
-                }
-            }, 200);
+            // Wait for kinetic animation to play for a bit
+            setTimeout(() => {
+                loader.classList.add('fade-out');
+                sessionStorage.setItem('jf_loader_shown', 'true');
+                setTimeout(() => {
+                    if (typeof revealOnScroll === 'function') revealOnScroll();
+                }, 500);
+            }, 3000); // 3s duration for the cool animation
         }
     } else {
         // If there's no loader (like on subpages), reveal elements immediately

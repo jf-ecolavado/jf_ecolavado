@@ -285,36 +285,138 @@ ul {
     text-align: center;
 }
 
-.loader-logo-img {
-    height: 90px;
+.loader-logo-hero {
+    max-height: 280px; /* Tamaño idéntico al del Hero */
     width: auto;
-    position: fixed; /* Cambiado a fixed para asegurar posición */
-    top: 0;
-    left: 5%;
-    z-index: 10000 !important; /* Capa máxima */
+    display: block;
+    margin: 0 auto 40px;
+    filter: drop-shadow(0 0 25px rgba(138, 195, 78, 0.4));
     mix-blend-mode: lighten;
-    pointer-events: none;
+    animation: loaderLogoPulse 3s ease-in-out infinite;
 }
 
-.loader-bar-container {
-    width: 200px;
-    height: 3px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 2px;
-    margin: 40px auto 15px; /* Ajustamos el margen para que no se pierda la barra */
-    overflow: hidden;
+@keyframes loaderLogoPulse {
+    0%, 100% { opacity: 0.8; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.02); }
 }
 
-.loader-bar {
-    width: 0%;
-    height: 100%;
-    background: linear-gradient(90deg, var(--color-green), var(--color-blue));
-    transition: width 0.5s ease;
+/* --- KINETIC DOTS LOADER (PRODUCTO REBOTANDO) --- */
+.kinetic-dots-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 30px;
+}
+
+.kinetic-dots {
+    display: flex;
+    gap: 25px;
+}
+
+.kinetic-dot-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    height: 80px;
+    width: 24px;
+}
+
+/* 1. THE BOUNCING BALL (GOTAS) */
+.dot-ball {
+    position: relative;
+    width: 22px;
+    height: 22px;
+    z-index: 10;
+    border-radius: 50%;
+    background: linear-gradient(to bottom, var(--color-green), var(--color-blue));
+    box-shadow: 0 0 15px rgba(138, 195, 78, 0.4);
+    will-change: transform;
+    animation: gravity-bounce 1.4s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+    animation-delay: calc(var(--i) * 0.15s);
+}
+
+.dot-ball::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: inherit;
+    animation: rubber-morph 1.4s linear infinite;
+    animation-delay: calc(var(--i) * 0.15s);
+}
+
+.dot-specular {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 6px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    filter: blur(0.5px);
+    z-index: 11;
+}
+
+/* 2. FLOOR RIPPLE (Shockwave) */
+.dot-ripple {
+    position: absolute;
+    bottom: 0;
+    width: 40px;
+    height: 12px;
+    border: 1px solid rgba(106, 193, 197, 0.3);
+    border-radius: 100%;
+    opacity: 0;
+    animation: ripple-expand 1.4s linear infinite;
+    animation-delay: calc(var(--i) * 0.15s);
+}
+
+/* 3. REFLECTIVE SHADOW */
+.dot-shadow {
+    position: absolute;
+    bottom: -4px;
+    width: 20px;
+    height: 6px;
+    border-radius: 100%;
+    background: rgba(138, 195, 78, 0.3);
+    filter: blur(4px);
+    animation: shadow-breathe 1.4s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+    animation-delay: calc(var(--i) * 0.15s);
+}
+
+/* ANIMACIONES */
+@keyframes gravity-bounce {
+    0%, 100% { transform: translateY(0); animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1); }
+    50% { transform: translateY(-50px); animation-timing-function: cubic-bezier(0.32, 0, 0.67, 0); }
+}
+
+@keyframes rubber-morph {
+    0% { transform: scale(1.4, 0.6); }
+    5% { transform: scale(0.9, 1.1); }
+    15%, 50% { transform: scale(1, 1); }
+    85% { transform: scale(0.9, 1.1); }
+    100% { transform: scale(1.4, 0.6); }
+}
+
+@keyframes shadow-breathe {
+    0%, 100% { transform: scale(1.4); opacity: 0.6; }
+    50% { transform: scale(0.5); opacity: 0.1; }
+}
+
+@keyframes ripple-expand {
+    0% { transform: scale(0.5); opacity: 0; border-width: 4px; }
+    5% { opacity: 0.8; }
+    30% { transform: scale(1.5); opacity: 0; border-width: 0px; }
+    100% { transform: scale(1.5); opacity: 0; }
 }
 
 .loader-text {
     font-size: 0.9rem;
+    font-weight: 500;
     color: var(--color-text-muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
 /* --- NAVIGATION --- */
