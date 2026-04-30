@@ -767,7 +767,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const context = canvas.getContext('2d');
         const frameCount = 121;
         const currentFrame = index => (
-            `principal/ezgif-frame-${index.toString().padStart(3, '0')}.jpg`
+            `./principal/ezgif-frame-${index.toString().padStart(3, '0')}.jpg`
         );
 
         const images = [];
@@ -788,7 +788,10 @@ document.addEventListener('DOMContentLoaded', () => {
             img.src = currentFrame(i);
             img.onload = () => {
                 imagesLoaded++;
-                if (i === frameCount) { // Draw the initial (last) frame as soon as it loads
+                if (i === 1) { // Draw first frame immediately
+                    resizeCanvas();
+                }
+                if (i === frameCount) { 
                     resizeCanvas();
                 }
             };
@@ -844,7 +847,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const ctxM = canvasMobile.getContext('2d');
         const frameCountM = 40;
         const currentFrameM = index =>
-            `principal-movil/ezgif-frame-${index.toString().padStart(3, '0')}.jpg`;
+            `./principal-movil/ezgif-frame-${index.toString().padStart(3, '0')}.jpg`;
 
         const imagesM = [];
         let lastDrawnM = 0; // Start at the first frame
