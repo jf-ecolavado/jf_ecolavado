@@ -21,6 +21,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 500);
             }, 3000); // 3s duration for the cool animation
         }
+
+        // --- SAFETY TIMEOUT ---
+        // If anything fails, force hide loader after 5 seconds
+        setTimeout(() => {
+            if (loader.style.display !== 'none') {
+                loader.classList.add('fade-out');
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                    if (typeof revealOnScroll === 'function') revealOnScroll();
+                }, 500);
+            }
+        }, 5000);
     } else {
         // If there's no loader (like on subpages), reveal elements immediately
         setTimeout(() => {
@@ -165,9 +177,15 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const bar = entry.target;
-                // Extraer el ancho del atributo style inline
-                const targetWidth = bar.getAttribute('style').match(/width:\s*(\d+)%/)[1];
-                bar.style.width = targetWidth + '%';
+                // Safety check for style attribute
+                const styleAttr = bar.getAttribute('style');
+                if (styleAttr && styleAttr.includes('width')) {
+                    const match = styleAttr.match(/width:\s*(\d+)%/);
+                    if (match && match[1]) {
+                        const targetWidth = match[1];
+                        bar.style.width = targetWidth + '%';
+                    }
+                }
                 barObserver.unobserve(bar);
             }
         });
