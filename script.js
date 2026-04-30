@@ -21,6 +21,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 500);
             }, 3000); // 3s duration for the cool animation
         }
+    } else {
+        // If there's no loader (like on subpages), reveal elements immediately
+        setTimeout(() => {
+            if (typeof revealOnScroll === 'function') revealOnScroll();
+        }, 100);
+    }
+
     // --- 1.2 NEWSLETTER SUBSCRIPTION ---
     const newsletterForm = document.getElementById('newsletter-form');
     if (newsletterForm) {
