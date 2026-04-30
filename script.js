@@ -21,11 +21,53 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 500);
             }, 3000); // 3s duration for the cool animation
         }
-    } else {
-        // If there's no loader (like on subpages), reveal elements immediately
-        setTimeout(() => {
-            if (typeof revealOnScroll === 'function') revealOnScroll();
-        }, 100);
+    // --- 1.2 NEWSLETTER SUBSCRIPTION ---
+    const newsletterForm = document.getElementById('newsletter-form');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const emailInput = document.getElementById('newsletter-email');
+            const submitBtn = document.getElementById('newsletter-submit');
+            const originalText = submitBtn.innerHTML;
+
+            if (!emailInput.value) return;
+
+            submitBtn.innerHTML = 'Uniendo...';
+            submitBtn.disabled = true;
+
+            const formData = new FormData();
+            formData.append('Email Suscriptor', emailInput.value);
+            formData.append('Tipo de Envío', 'Suscripción Newsletter Ofertas');
+
+            try {
+                const response = await fetch('https://getform.io/f/gsgsrq95g39', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    submitBtn.innerHTML = '<span class="btn-text-content">¡Te has unido!</span>';
+                    submitBtn.style.background = 'var(--color-green)';
+                    emailInput.value = '';
+                    setTimeout(() => {
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.style.background = '';
+                        submitBtn.disabled = false;
+                        if (typeof injectStars === 'function') injectStars();
+                    }, 4000);
+                } else {
+                    alert('Hubo un problema. Inténtalo de nuevo.');
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }
+            } catch (err) {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        });
     }
 
     // --- 2. STICKY NAV & MOBILE MENU ---
