@@ -434,7 +434,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- 7. COOKIE BANNER ---
+    // --- 7. COOKIE BANNER (Disabled by user request for cleaner UI) ---
+    /*
     const cookieBanner = document.getElementById('cookie-banner');
     const acceptCookies = document.getElementById('accept-cookies');
     const rejectCookies = document.getElementById('reject-cookies');
