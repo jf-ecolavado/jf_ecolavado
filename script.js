@@ -1,5 +1,102 @@
 document.addEventListener('DOMContentLoaded', () => {
     
+    // --- 0. SCROLL SEQUENCE CANVAS LOGIC (PRIORITY) ---
+    const canvas = document.getElementById('scroll-sequence-canvas');
+    const canvasMobile = document.getElementById('scroll-sequence-canvas-mobile');
+
+    if (canvas) {
+        const context = canvas.getContext('2d');
+        const frameCount = 121;
+        const currentFrame = index => (
+            `./principal/ezgif-frame-${index.toString().padStart(3, '0')}.jpg`
+        );
+        const images = [];
+        let imagesLoaded = 0;
+        const resizeCanvas = () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            renderFrame(lastDrawnIndex);
+        };
+        window.addEventListener('resize', resizeCanvas);
+        for (let i = 1; i <= frameCount; i++) {
+            const img = new Image();
+            img.src = currentFrame(i);
+            img.onload = () => {
+                imagesLoaded++;
+                if (i === 1) resizeCanvas();
+                if (i === frameCount) resizeCanvas();
+            };
+            images.push(img);
+        }
+        let lastDrawnIndex = 0;
+        const renderFrame = (index) => {
+            if (images[index] && images[index].complete && images[index].naturalWidth > 0) {
+                const img = images[index];
+                const hRatio = canvas.width / img.width;
+                const vRatio = canvas.height / img.height;
+                const ratio  = Math.max(hRatio, vRatio);
+                const cx = (canvas.width - img.width * ratio) / 2;
+                const cy = (canvas.height - img.height * ratio) / 2;  
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                context.drawImage(img, 0, 0, img.width, img.height, cx, cy, img.width * ratio, img.height * ratio);
+                lastDrawnIndex = index;
+            }
+        };
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            if (maxScroll > 0) {
+                const frac = Math.max(0, Math.min(1, scrollY / maxScroll));
+                renderFrame(Math.floor(frac * (frameCount - 1)));
+            }
+        });
+    }
+
+    if (canvasMobile) {
+        const ctxM = canvasMobile.getContext('2d');
+        const frameCountM = 40;
+        const currentFrameM = index => `./principal-movil/ezgif-frame-${index.toString().padStart(3, '0')}.jpg`;
+        const imagesM = [];
+        let imagesLoadedM = 0;
+        const resizeCanvasM = () => {
+            canvasMobile.width  = window.innerWidth;
+            canvasMobile.height = window.innerHeight;
+            if (imagesLoadedM > 0) renderFrameM(lastDrawnM);
+        };
+        window.addEventListener('resize', resizeCanvasM);
+        for (let i = 1; i <= frameCountM; i++) {
+            const img = new Image();
+            img.src = currentFrameM(i);
+            img.onload = () => {
+                imagesLoadedM++;
+                if (imagesLoadedM === 1 || imagesLoadedM === frameCountM) resizeCanvasM();
+            };
+            imagesM.push(img);
+        }
+        let lastDrawnM = 0;
+        const renderFrameM = (index) => {
+            if (imagesM[index] && imagesM[index].complete && imagesM[index].naturalWidth > 0) {
+                const img = imagesM[index];
+                const hRatio = canvasMobile.width  / img.width;
+                const vRatio = canvasMobile.height / img.height;
+                const ratio  = Math.max(hRatio, vRatio);
+                const cx = (canvasMobile.width  - img.width  * ratio) / 2;
+                const cy = (canvasMobile.height - img.height * ratio) / 2;
+                ctxM.clearRect(0, 0, canvasMobile.width, canvasMobile.height);
+                ctxM.drawImage(img, 0, 0, img.width, img.height, cx, cy, img.width * ratio, img.height * ratio);
+                lastDrawnM = index;
+            }
+        };
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            if (maxScroll > 0) {
+                const frac = Math.max(0, Math.min(1, scrollY / maxScroll));
+                renderFrameM(Math.floor(frac * (frameCountM - 1)));
+            }
+        });
+    }
+    
     // --- 1. PRELOADER ---
     const loader = document.getElementById('loader');
     const loaderBar = document.querySelector('.loader-bar');
@@ -761,154 +858,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- 10. SCROLL SEQUENCE CANVAS LOGIC ---
-    const canvas = document.getElementById('scroll-sequence-canvas');
-    if (canvas) {
-        const context = canvas.getContext('2d');
-        const frameCount = 121;
-        const currentFrame = index => (
-            `./principal/ezgif-frame-${index.toString().padStart(3, '0')}.jpg`
-        );
 
-        const images = [];
-        let imagesLoaded = 0;
-
-        // Resize canvas to match window
-        const resizeCanvas = () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            renderFrame(lastDrawnIndex);
-        };
-
-        window.addEventListener('resize', resizeCanvas);
-
-        // Preload images
-        for (let i = 1; i <= frameCount; i++) {
-            const img = new Image();
-            img.src = currentFrame(i);
-            img.onload = () => {
-                imagesLoaded++;
-                if (i === 1) { // Draw first frame immediately
-                    resizeCanvas();
-                }
-                if (i === frameCount) { 
-                    resizeCanvas();
-                }
-            };
-            images.push(img);
-        }
-
-        let lastDrawnIndex = 0; // Start at the first frame
-
-        const renderFrame = (index) => {
-            if (images[index] && images[index].complete && images[index].naturalWidth > 0) {
-                const img = images[index];
-                const hRatio = canvas.width / img.width;
-                const vRatio = canvas.height / img.height;
-                const ratio  = Math.max(hRatio, vRatio);
-                const centerShift_x = (canvas.width - img.width * ratio) / 2;
-                const centerShift_y = (canvas.height - img.height * ratio) / 2;  
-                
-                context.clearRect(0, 0, canvas.width, canvas.height);
-                context.drawImage(img, 0, 0, img.width, img.height,
-                                  centerShift_x, centerShift_y, img.width * ratio, img.height * ratio);
-                lastDrawnIndex = index;
-            }
-        };
-
-        let tickingCanvas = false;
-
-        window.addEventListener('scroll', () => {
-            if (!tickingCanvas) {
-                window.requestAnimationFrame(() => {
-                    const scrollY = window.scrollY;
-                    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-                    
-                    if (maxScroll > 0) {
-                        let scrollFraction = scrollY / maxScroll;
-                        // Clamp between 0 and 1
-                        scrollFraction = Math.max(0, Math.min(1, scrollFraction));
-                        
-                        // Normal index mapping (start to end)
-                        const frameIndex = Math.floor(scrollFraction * (frameCount - 1));
-                        renderFrame(frameIndex);
-                    }
-                    tickingCanvas = false;
-                });
-                tickingCanvas = true;
-            }
-        });
-    }
-
-    // --- 10b. SCROLL SEQUENCE CANVAS MÓVIL ---
-    const canvasMobile = document.getElementById('scroll-sequence-canvas-mobile');
-
-    if (canvasMobile) {
-        const ctxM = canvasMobile.getContext('2d');
-        const frameCountM = 40;
-        const currentFrameM = index =>
-            `./principal-movil/ezgif-frame-${index.toString().padStart(3, '0')}.jpg`;
-
-        const imagesM = [];
-        let lastDrawnM = 0; // Start at the first frame
-
-        const renderFrameM = (index) => {
-            if (imagesM[index] && imagesM[index].complete && imagesM[index].naturalWidth > 0) {
-                const img = imagesM[index];
-                const hRatio = canvasMobile.width  / img.width;
-                const vRatio = canvasMobile.height / img.height;
-                const ratio  = Math.max(hRatio, vRatio);
-                const cx = (canvasMobile.width  - img.width  * ratio) / 2;
-                const cy = (canvasMobile.height - img.height * ratio) / 2;
-                ctxM.clearRect(0, 0, canvasMobile.width, canvasMobile.height);
-                ctxM.drawImage(img, 0, 0, img.width, img.height, cx, cy, img.width * ratio, img.height * ratio);
-                lastDrawnM = index;
-            }
-        };
-
-        let imagesLoadedM = 0;
-        const resizeCanvasM = () => {
-            canvasMobile.width  = window.innerWidth;
-            canvasMobile.height = window.innerHeight;
-            if (imagesLoadedM > 0) renderFrameM(lastDrawnM);
-        };
-
-        window.addEventListener('resize', resizeCanvasM);
-
-        // Preload all frames
-        for (let i = 1; i <= frameCountM; i++) {
-            const img = new Image();
-            img.src = currentFrameM(i);
-            img.onload = () => {
-                imagesLoadedM++;
-                // Render first frame as soon as it's available
-                if (imagesLoadedM === 1) {
-                    resizeCanvasM();
-                }
-                // Also resize once all are loaded to be safe
-                if (imagesLoadedM === frameCountM) {
-                    resizeCanvasM();
-                }
-            };
-            imagesM.push(img);
-        }
-
-        let tickingM = false;
-        window.addEventListener('scroll', () => {
-            if (!tickingM) {
-                window.requestAnimationFrame(() => {
-                    const scrollY   = window.scrollY;
-                    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-                    if (maxScroll > 0) {
-                        const frac = Math.max(0, Math.min(1, scrollY / maxScroll));
-                        renderFrameM(Math.floor(frac * (frameCountM - 1)));
-                    }
-                    tickingM = false;
-                });
-                tickingM = true;
-            }
-        });
-    }
 
     // --- 15. PRE-FILL FORM FROM URL PARAMETERS ---
     const urlParams = new URLSearchParams(window.location.search);
