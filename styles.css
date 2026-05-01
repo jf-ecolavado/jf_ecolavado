@@ -2686,9 +2686,38 @@ ul {
     .form-container { padding: 30px 20px; }
     .form-row.checkbox-row { flex-direction: column; gap: 15px; }
     
-    .footer-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
-    .footer-buttons { flex-direction: row; justify-content: center; flex-wrap: wrap; }
-    .contact-links { align-items: center; }
+    .footer-grid { 
+        grid-template-columns: 1fr; 
+        gap: 40px; 
+        text-align: center; 
+    }
+    
+    .footer-brand, .footer-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-links li {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .footer-buttons { 
+        flex-direction: row; 
+        justify-content: center; 
+        flex-wrap: wrap; 
+    }
+    
+    .contact-links { 
+        align-items: center; 
+        justify-content: center;
+    }
+    
+    .cookie-content { flex-direction: column; text-align: center; }
+    .cookie-buttons { flex-wrap: wrap; justify-content: center; }
     
     
     /* Fix service banners for mobile: Stack text above video */
@@ -2829,13 +2858,35 @@ ul {
         gap: 30px !important;
     }
     
+    .form-main {
+        padding: 30px 20px !important;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .form-group {
+        width: 100%;
+        text-align: center;
+    }
+
+    .form-group label {
+        display: block;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
     .form-sidebar {
         position: static !important; /* Don't stick on mobile */
         width: 100% !important;
+        display: flex;
+        justify-content: center;
     }
-    
-    .form-main {
-        padding: 30px 20px !important;
+
+    .cart-card {
+        width: 100%;
+        max-width: 400px;
     }
 }
 
