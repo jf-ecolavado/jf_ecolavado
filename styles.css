@@ -46,7 +46,7 @@ html, body {
 }
 
 body {
-    background-color: var(--color-bg);
+    background-color: transparent;
     color: var(--color-text);
     font-family: var(--font-main);
     line-height: 1.6;
@@ -72,7 +72,6 @@ ul {
 .section {
     padding: 70px 0;
     position: relative;
-    z-index: 10; /* Asegurar que las secciones están por encima del fondo */
 }
 
 .results-section {
@@ -137,21 +136,21 @@ ul {
 
 .btn, .newsletter-btn, .package-btn, .wa-reply-btn {
     position: relative;
+    padding: 12px 35px !important;
+    background: var(--btn-color) !important;
+    border: 3px solid var(--btn-color) !important;
+    border-radius: 8px !important;
+    color: var(--btn-color-dark) !important;
+    font-size: 17px !important;
+    font-weight: 800 !important;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out !important;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 15px 35px;
-    border-radius: var(--radius-pill);
-    font-weight: 700;
-    text-decoration: none;
-    transition: var(--transition-normal);
-    cursor: pointer;
-    border: none;
-    font-size: 1rem;
-    background: var(--btn-color) !important;
-    color: var(--btn-color-dark) !important;
-    overflow: hidden;
-    touch-action: manipulation;
+    text-decoration: none !important;
+    outline: none;
+    overflow: visible !important;
     z-index: 1;
     gap: 8px;
     box-shadow: 0 0 0 var(--btn-shadow);
@@ -2095,8 +2094,9 @@ ul {
 
 /* --- MODERN FOOTER --- */
 .footer {
-    background-color: var(--color-bg-darker);
-    padding: 80px 0 40px;
+    background-color: rgba(5, 5, 5, 0.9);
+    color: var(--color-text);
+    padding: 100px 0 40px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     position: relative;
     z-index: 10;
@@ -2748,6 +2748,10 @@ ul {
     }
 
     /* FORZAR VISIBILIDAD DE TARJETAS EN MÓVIL */
+    .section {
+        z-index: 10 !important;
+    }
+
     .service-card {
         transform: none !important;
         pointer-events: auto !important;
