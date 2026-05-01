@@ -39,12 +39,17 @@ html {
     font-size: 16px;
 }
 
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+}
+
 body {
-    background-color: transparent;
+    background-color: var(--color-bg);
     color: var(--color-text);
     font-family: var(--font-main);
     line-height: 1.6;
-    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -131,21 +136,21 @@ ul {
 
 .btn, .newsletter-btn, .package-btn, .wa-reply-btn {
     position: relative;
-    padding: 12px 35px !important;
-    background: var(--btn-color) !important;
-    border: 3px solid var(--btn-color) !important;
-    border-radius: 8px !important;
-    color: var(--btn-color-dark) !important;
-    font-size: 17px !important;
-    font-weight: 800 !important;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out !important;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    text-decoration: none !important;
-    outline: none;
-    overflow: visible !important;
+    padding: 15px 35px;
+    border-radius: var(--radius-pill);
+    font-weight: 700;
+    text-decoration: none;
+    transition: var(--transition-normal);
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+    background: var(--btn-color) !important;
+    color: var(--btn-color-dark) !important;
+    overflow: hidden;
+    touch-action: manipulation;
     z-index: 1;
     gap: 8px;
     box-shadow: 0 0 0 var(--btn-shadow);
@@ -2735,22 +2740,25 @@ ul {
     /* Botones específicos de servicios en móvil ya escalados arriba */
 
 
-    /* Asegurar que los botones sean clickeables */
+    /* Asegurar que los botones sean clickeables y grandes */
     .btn, button, a, .mobile-menu-toggle {
         position: relative;
         z-index: 10005 !important;
         pointer-events: auto !important;
         cursor: pointer !important;
+        touch-action: manipulation;
+        min-height: 48px; /* Standard Apple/Google recommendation */
     }
 
     .navbar {
-        z-index: 10000 !important;
+        z-index: 10010 !important; /* Por encima de todo */
     }
 
     .mobile-menu-toggle {
         display: block !important;
         background: transparent;
         border: none;
+        padding: 10px;
     }
 
     .nav-links {
