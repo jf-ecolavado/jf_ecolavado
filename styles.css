@@ -2799,17 +2799,27 @@ ul {
     
     .wa-widget {
         bottom: 20px;
-        right: 20px;
+        left: 20px; /* Movido a la izquierda */
+        right: auto;
         z-index: 10002 !important;
     }
     
     .wa-fab {
-        width: 60px;
-        height: 60px;
+        width: 40px; /* Reducido ~50% (original 65px / 60px) */
+        height: 40px;
     }
     
     .wa-fab i {
-        font-size: 2.2rem;
+        font-size: 1.5rem; /* Icono más pequeño */
+    }
+
+    /* Ajustar burbuja para que abra desde la izquierda */
+    .wa-chat-bubble {
+        left: 0;
+        right: auto;
+        bottom: 55px;
+        transform-origin: bottom left;
+        width: 280px; /* Un poco más estrecha */
     }
 
     /* New Zonas Responsive */
