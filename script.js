@@ -240,22 +240,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- 10. COOKIE BANNER ---
-    const cookieBanner = document.getElementById('cookie-banner');
-    if (cookieBanner && !localStorage.getItem('jf_cookie_consent')) {
-        setTimeout(() => cookieBanner.classList.add('show'), 2000);
-        document.getElementById('accept-cookies').addEventListener('click', () => {
-            localStorage.setItem('jf_cookie_consent', 'accepted');
-            cookieBanner.classList.remove('show');
-        });
-        document.getElementById('reject-cookies').addEventListener('click', () => {
-            localStorage.setItem('jf_cookie_consent', 'rejected');
-            cookieBanner.classList.remove('show');
-        });
-        document.getElementById('config-cookies').addEventListener('click', () => {
-            window.location.href = "politica-cookies.html";
-        });
-    }
 
     // --- 11. NEWSLETTER ---
     const newsletterForm = document.getElementById('newsletter-form');

@@ -2470,45 +2470,6 @@ ul {
 
 
 
-/* --- COOKIE BANNER --- */
-.cookie-banner {
-    position: fixed;
-    bottom: -100%;
-    left: 0;
-    width: 100%;
-    background-color: rgba(13, 13, 13, 0.95);
-    backdrop-filter: blur(10px);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    z-index: 10001;
-    transition: bottom 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    padding: 20px 0;
-    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5);
-}
-
-.cookie-banner.show {
-    bottom: 0;
-}
-
-.cookie-content {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 30px;
-}
-
-.cookie-content p {
-    font-size: 0.85rem;
-    color: #ccc;
-    flex: 1;
-}
-
-.cookie-buttons {
-    display: flex;
-    gap: 10px;
-}
 
 
 /* --- RESULTADOS (Compact) --- */
@@ -2722,8 +2683,6 @@ ul {
     .footer-buttons { flex-direction: row; justify-content: center; flex-wrap: wrap; }
     .contact-links { align-items: center; }
     
-    .cookie-content { flex-direction: column; text-align: center; }
-    .cookie-buttons { flex-wrap: wrap; justify-content: center; }
     
     /* Fix service banners for mobile: Stack text above video */
     .service-card-wide, .service-card-wide.reverse {
