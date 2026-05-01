@@ -279,6 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- 12. WHATSAPP CHAT WIDGET ---
+    const waWidget = document.getElementById('wa-widget');
     const waFab = document.getElementById('wa-fab');
     const waBubble = document.getElementById('wa-chat-bubble');
     const waClose = document.getElementById('wa-close-bubble');
@@ -288,6 +289,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (waClose) waClose.addEventListener('click', (e) => {
             e.stopPropagation();
             waBubble.classList.remove('visible');
+            // NUEVO: Ocultar todo el widget si se cierra la burbuja (Solo en móvil)
+            if (window.innerWidth <= 768) {
+                waWidget.style.display = 'none';
+            }
         });
         if (!sessionStorage.getItem('jf_wa_shown')) {
             setTimeout(() => {

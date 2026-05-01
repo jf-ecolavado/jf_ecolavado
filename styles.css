@@ -72,6 +72,7 @@ ul {
 .section {
     padding: 70px 0;
     position: relative;
+    z-index: 10; /* Asegurar que las secciones están por encima del fondo */
 }
 
 .results-section {
@@ -2094,10 +2095,11 @@ ul {
 
 /* --- MODERN FOOTER --- */
 .footer {
-    background-color: rgba(5, 5, 5, 0.9);
-    color: var(--color-text);
-    padding: 100px 0 40px;
+    background-color: var(--color-bg-darker);
+    padding: 80px 0 40px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    z-index: 10;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
 }
@@ -2870,11 +2872,11 @@ ul {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
+    width: 100%;
+    height: 100%;
+    z-index: -5; /* Más profundo aún */
     object-fit: cover;
-    pointer-events: none;
+    pointer-events: none !important; /* Forzar no-interacción */
 }
 
 /* Desktop: show desktop canvas, hide mobile canvas */
