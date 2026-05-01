@@ -2798,8 +2798,9 @@ ul {
     .whatsapp-float { display: none; } /* Hide legacy */
     
     .wa-widget {
+        display: none; /* Oculto por defecto en móvil */
         bottom: 20px;
-        left: 20px; /* Movido a la izquierda */
+        left: 20px;
         right: auto;
         z-index: 10002 !important;
     }

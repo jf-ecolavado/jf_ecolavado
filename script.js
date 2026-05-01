@@ -296,10 +296,28 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         if (!sessionStorage.getItem('jf_wa_shown')) {
             setTimeout(() => {
-                waBubble.classList.add('visible');
-                sessionStorage.setItem('jf_wa_shown', 'true');
+                // Solo auto-mostrar en escritorio
+                if (window.innerWidth > 768) {
+                    waBubble.classList.add('visible');
+                    sessionStorage.setItem('jf_wa_shown', 'true');
+                }
             }, 20000);
         }
+
+        // NUEVO: Lógica para mostrar WA al final de la página (Solo Móvil)
+        window.addEventListener('scroll', () => {
+            if (window.innerWidth <= 768) {
+                const scrollPosition = window.innerHeight + window.pageYOffset;
+                const threshold = document.documentElement.scrollHeight - 200; // Un poco antes del final
+                if (scrollPosition >= threshold) {
+                    waWidget.style.display = 'block';
+                    if (!sessionStorage.getItem('jf_wa_mobile_bottom')) {
+                        setTimeout(() => waBubble.classList.add('visible'), 500);
+                        sessionStorage.setItem('jf_wa_mobile_bottom', 'true');
+                    }
+                }
+            }
+        });
     }
 
     // --- 13. COMPARISON SLIDERS (RESULTADOS) ---
