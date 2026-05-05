@@ -72,8 +72,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const service = urlParams.get('service');
         const pkg = urlParams.get('pkg');
         const size = urlParams.get('size');
+        const municipio = urlParams.get('municipio');
         
         const servicioSelect = document.getElementById('servicio');
+        const zonaSelect = document.getElementById('zona');
+
+        if (municipio && zonaSelect) {
+            zonaSelect.value = municipio;
+            zonaSelect.dispatchEvent(new Event('change'));
+        }
         
         if (service && servicioSelect) {
             servicioSelect.value = service;
@@ -114,6 +121,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }, 300);
         }
+
+        // Forzar actualización del carrito al final
+        setTimeout(() => {
+            const form = document.getElementById('presupuesto-form');
+            if (form) {
+                form.dispatchEvent(new Event('change'));
+            }
+        }, 500);
     };
 
     // --- 4. NAVEGACIÓN STICKY & MENÚ MÓVIL ---
@@ -322,13 +337,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 13. COMPARISON SLIDERS (RESULTADOS) ---
     const comparisonSliders = document.querySelectorAll('.comparison-slider');
+    
+    const sliderObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !entry.target.classList.contains('interacted')) {
+                const slider = entry.target;
+                // Pequeña animación automática
+                slider.classList.add('slider-animating');
+                setTimeout(() => {
+                    slider.classList.remove('slider-animating');
+                }, 3000);
+                // Dejar de observar después de la primera vez
+                sliderObserver.unobserve(slider);
+            }
+        });
+    }, { threshold: 0.5 });
+
     comparisonSliders.forEach(slider => {
         const input = slider.querySelector('.slider-input');
         if (input) {
             input.addEventListener('input', (e) => {
                 slider.style.setProperty('--position', `${e.target.value}%`);
+                slider.classList.add('interacted');
+                slider.classList.remove('slider-animating');
             });
+            
+            // Inyectar el texto de ayuda si no existe
+            if (!slider.querySelector('.slider-hint')) {
+                const hint = document.createElement('div');
+                hint.className = 'slider-hint';
+                hint.innerHTML = 'Múvelo para ver el cambio';
+                slider.appendChild(hint);
+            }
         }
+        sliderObserver.observe(slider);
     });
 
     // --- 14. BUBBLE CLICK EFFECT (INTENSIFICADO) ---

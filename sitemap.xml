@@ -2,20 +2,62 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.jfecolavado.es/</loc>
-    <lastmod>2026-05-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2026-05-05</lastmod>
+    <priority>1.00</priority>
   </url>
   <url>
     <loc>https://www.jfecolavado.es/precios.html</loc>
-    <lastmod>2026-05-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-05-05</lastmod>
+    <priority>0.80</priority>
   </url>
   <url>
     <loc>https://www.jfecolavado.es/resultados.html</loc>
-    <lastmod>2026-05-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-05-05</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.jfecolavado.es/blog.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.jfecolavado.es/localidades/santa-cruz.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.jfecolavado.es/localidades/la-laguna.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.jfecolavado.es/localidades/adeje.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.jfecolavado.es/localidades/arona.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.jfecolavado.es/localidades/candelaria.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <priority>0.60</priority>
+  </url>
+  <url>
+    <loc>https://www.jfecolavado.es/localidades/granadilla.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <priority>0.60</priority>
+  </url>
+  <url>
+    <loc>https://www.jfecolavado.es/localidades/la-orotava.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <priority>0.60</priority>
+  </url>
+  <url>
+    <loc>https://www.jfecolavado.es/localidades/puerto-de-la-cruz.html</loc>
+    <lastmod>2026-05-05</lastmod>
+    <priority>0.60</priority>
   </url>
 </urlset>

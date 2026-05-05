@@ -2634,6 +2634,46 @@ ul {
 .label-before { left: 10px; }
 .label-after { right: 10px; z-index: 0; }
 
+.slider-hint {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(138, 195, 78, 0.9);
+    color: #000;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    white-space: nowrap;
+    z-index: 20;
+    pointer-events: none;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    animation: hint-float 2s ease-in-out infinite;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.comparison-slider.interacted .slider-hint {
+    opacity: 0;
+}
+
+@keyframes hint-float {
+    0%, 100% { transform: translate(-50%, -50%); }
+    50% { transform: translate(-50%, -65%); }
+}
+
+@keyframes slider-auto-move {
+    0%, 100% { --position: 50%; }
+    25% { --position: 30%; }
+    75% { --position: 70%; }
+}
+
+.slider-animating {
+    animation: slider-auto-move 3s ease-in-out forwards;
+}
+
 /* --- ANIMATIONS & REVEAL --- */
 .reveal {
     opacity: 0;
