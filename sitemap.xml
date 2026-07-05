@@ -31,6 +31,28 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Artículos de Blog -->
+  <url>
+    <loc>https://www.jfecolavado.es/blog/precio-limpiar-sofa-tenerife.html</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.jfecolavado.es/blog/eliminar-olor-orina-mascotas-sofa.html</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.jfecolavado.es/blog/cada-cuanto-limpiar-colchon.html</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- Páginas locales por municipio -->
   <url>
     <loc>https://www.jfecolavado.es/localidades/santa-cruz.html</loc>
