@@ -48,7 +48,21 @@
 
   <url>
     <loc>https://www.jfecolavado.es/blog/cada-cuanto-limpiar-colchon.html</loc>
-    <lastmod>2026-07-05</lastmod>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.jfecolavado.es/blog/limpiar-vomito-asiento-coche.html</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.jfecolavado.es/blog/limpiar-vomito-sofa.html</loc>
+    <lastmod>2026-07-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
