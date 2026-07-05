@@ -436,7 +436,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         for (let i = 1; i <= frameCount; i++) {
             const img = new Image();
-            img.src = `principal/ezgif-frame-${i.toString().padStart(3, '0')}.jpg`;
+            img.src = `principal/ezgif-frame-${i.toString().padStart(3, '0')}.webp`;
             img.onload = () => {
                 imagesLoaded++;
                 if (i === 1) resize();
@@ -482,7 +482,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         for (let i = 1; i <= frameCountM; i++) {
             const img = new Image();
-            img.src = `principal%20movil/ezgif-frame-${i.toString().padStart(3, '0')}.jpg`;
+            img.src = `principal%20movil/ezgif-frame-${i.toString().padStart(3, '0')}.webp`;
             img.onload = () => { if (i === 1) resizeM(); };
             imagesM.push(img);
         }
