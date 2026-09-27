@@ -49,22 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // --- 2. PRELOADER ---
-    const loader = document.getElementById('loader');
-    if (loader) {
-        if (sessionStorage.getItem('jf_loader_shown')) {
-            loader.style.display = 'none';
-            setTimeout(forceReveal, 100);
-        } else {
-            setTimeout(() => {
-                loader.classList.add('fade-out');
-                sessionStorage.setItem('jf_loader_shown', 'true');
-                setTimeout(forceReveal, 800);
-            }, 3000); // 3s para la animación cinética
-        }
-    } else {
-        setTimeout(forceReveal, 100);
-    }
+    // --- 2. REVEAL INMEDIATO (SIN PANTALLA DE CARGA) ---
+    forceReveal();
 
     // --- 3. UNIFICACIÓN DE PARÁMETROS URL ---
     const handleUrlParams = () => {
