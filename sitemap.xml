@@ -9,6 +9,11 @@
     <priority>1.0</priority>
   </url>
 
+  <!-- Páginas de servicio -->
+  <url><loc>https://www.jfecolavado.es/limpieza-colchones-tenerife.html</loc><lastmod>2026-10-13</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.jfecolavado.es/limpieza-alfombras-tenerife.html</loc><lastmod>2026-10-13</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.jfecolavado.es/limpieza-tapiceria-coche-tenerife.html</loc><lastmod>2026-10-13</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+
   <!-- Páginas principales -->
   <url>
     <loc>https://www.jfecolavado.es/precios.html</loc>
